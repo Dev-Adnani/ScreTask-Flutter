@@ -12,4 +12,6 @@ class AppColors {
   static Color kBlueLight = const Color(0xFFEDF4FE);
   static Color kBlue = const Color(0xFFE1EDFC);
   static Color kBlueDark = const Color(0xFFC0D3F8);
+
+  static Color txtBackgroundColor = const Color(0xff191720);
 }
