@@ -1,5 +1,6 @@
 //Main File
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:scretask/app/providers/app.provider.dart';
 import 'package:scretask/app/routes/app.routes.dart';
 import 'package:provider/provider.dart';
@@ -24,9 +25,13 @@ class Core extends StatelessWidget {
   const Core({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+    );
     return MaterialApp(
       title: 'SCRETASK',
       theme: ThemeData(
+        fontFamily: 'Averta',
         useMaterial3: true,
         scaffoldBackgroundColor: const Color(0xffffffff),
       ),
