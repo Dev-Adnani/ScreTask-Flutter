@@ -43,7 +43,7 @@ class Core extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: AppRouter.generateRoute,
-      initialRoute: AppRouter.deciderRoute,
+      initialRoute: AppRouter.splashRoute,
     );
   }
 }
