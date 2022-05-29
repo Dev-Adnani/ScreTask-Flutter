@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:scretask/core/util/obs.util.dart';
+import 'package:scretask/core/util/obscure.text.util.dart';
 import 'package:scretask/presentation/widgets/custom.styles.dart';
 
 class CustomTextField {
@@ -51,7 +51,7 @@ class CustomTextField {
     Function(String)? onChanged,
   }) {
     final bool isPasswordVisible =
-        Provider.of<ObscureTextState>(context, listen: true).isTrue;
+        Provider.of<ObscureTextUtil>(context, listen: true).isTrue;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: TextFormField(

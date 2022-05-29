@@ -1,10 +1,7 @@
 import 'dart:async';
-import 'dart:ffi';
-
 import 'package:cloudinary_sdk/cloudinary_sdk.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:scretask/app/constants/app.const.dart';
 

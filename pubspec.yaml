@@ -9,7 +9,6 @@ environment:
 dependencies:
   cloudinary_sdk: ^4.0.1+9
   cupertino_icons: ^1.0.2
-  device_preview: ^1.1.0
   dotted_border: ^2.0.0+2
   file_picker: ^4.6.0
   flutter:
@@ -21,6 +20,7 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^2.0.0
+  device_preview: ^1.1.0
   flutter_test:
     sdk: flutter
 

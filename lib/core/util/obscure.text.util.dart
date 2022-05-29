@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ObscureTextState with ChangeNotifier {
+class ObscureTextUtil with ChangeNotifier {
   bool _isTrue = true;
   bool get isTrue => _isTrue;
 

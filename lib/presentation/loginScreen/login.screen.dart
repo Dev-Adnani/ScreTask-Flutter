@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scretask/app/routes/app.routes.dart';
-import 'package:scretask/core/util/obs.util.dart';
+import 'package:scretask/core/util/obscure.text.util.dart';
 import 'package:scretask/presentation/widgets/custom.button.dart';
 import 'package:scretask/presentation/widgets/custom.text.field.dart';
 import 'package:scretask/presentation/widgets/custom.styles.dart';
@@ -79,7 +79,7 @@ class LoginScreen extends StatelessWidget {
                                   validator: (val) =>
                                       val!.isEmpty ? 'Enter a password' : null,
                                   onTap: () {
-                                    Provider.of<ObscureTextState>(context,
+                                    Provider.of<ObscureTextUtil>(context,
                                             listen: false)
                                         .toggleObs();
                                   },
