@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:scretask/app/constants/app.colors.dart';
-import 'package:scretask/app/constants/app.constant.dart';
+import 'package:scretask/app/constants/app.const.dart';
 import 'package:scretask/app/routes/app.routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,7 +14,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   void _initiateCache() async {
     final prefs = await SharedPreferences.getInstance();
-    final String? action = prefs.getString(AppConstant.splashKey);
+    final String? action = prefs.getString(AppConst.splashKey);
     if (action == null) {
       Navigator.of(context).pushNamed(AppRouter.deciderRoute);
     } else {

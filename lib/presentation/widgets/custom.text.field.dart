@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:scretask/core/notifiers/obs.notifier.dart';
+import 'package:scretask/core/util/obs.util.dart';
 import 'package:scretask/presentation/widgets/custom.styles.dart';
 
 class CustomTextField {
