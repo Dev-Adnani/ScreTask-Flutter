@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scretask/app/routes/app.routes.dart';
+import 'package:scretask/core/services/photo.service.dart';
 import 'package:scretask/core/util/obs.util.dart';
+import 'package:scretask/presentation/signupScreen/widget/display.signup.screen.dart';
 import 'package:scretask/presentation/widgets/custom.button.dart';
 import 'package:scretask/presentation/widgets/custom.text.field.dart';
 import 'package:scretask/presentation/widgets/custom.styles.dart';
+import 'package:scretask/presentation/widgets/snackbar.widget.dart';
 
 class SignUpScreen extends StatelessWidget {
   final TextEditingController userEmailController = TextEditingController();
@@ -70,14 +73,23 @@ class SignUpScreen extends StatelessWidget {
                                   hintText: 'Username',
                                   inputType: TextInputType.text,
                                   textEditingController: userNameController,
+                                  validator: (val) =>
+                                      val!.isEmpty ? 'Enter a username' : null,
                                 ),
                                 CustomTextField.customTextField(
                                   hintText: 'Email',
                                   inputType: TextInputType.text,
                                   textEditingController: userEmailController,
+                                  validator: (val) =>
+                                      !RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+                                              .hasMatch(val!)
+                                          ? 'Enter an email'
+                                          : null,
                                 ),
                                 CustomTextField.customPasswordField(
                                   context: context,
+                                  validator: (val) =>
+                                      val!.isEmpty ? 'Enter a password' : null,
                                   onTap: () {
                                     Provider.of<ObscureTextState>(context,
                                             listen: false)
@@ -87,7 +99,8 @@ class SignUpScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          )
+                          ),
+                          DisplayPhotoSignUp(),
                         ],
                       ),
                     ),
@@ -117,7 +130,25 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     CustomButton.customBtnLogin(
                       buttonName: 'Register',
-                      onTap: () {},
+                      onTap: () {
+                        if (_formKey.currentState!.validate()) {
+                          if (Provider.of<PhotoService>(context, listen: false)
+                                  .file ==
+                              null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackUtil.stylishSnackBar(
+                                text: 'Please Select Profile Pic',
+                                context: context,
+                              ),
+                            );
+                          }
+                          else
+                          {
+                             Provider.of<PhotoService>(context, listen: false)
+                            .upload(context: context);
+                          }
+                        }
+                      },
                       bgColor: Colors.black,
                       textColor: Colors.white,
                     ),

@@ -4,7 +4,6 @@ import 'package:scretask/app/routes/app.routes.dart';
 import 'package:scretask/core/util/obs.util.dart';
 import 'package:scretask/presentation/widgets/custom.button.dart';
 import 'package:scretask/presentation/widgets/custom.text.field.dart';
-import 'package:scretask/presentation/widgets/snackbar.widget.dart';
 import 'package:scretask/presentation/widgets/custom.styles.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -69,9 +68,16 @@ class LoginScreen extends StatelessWidget {
                                   hintText: 'Email',
                                   inputType: TextInputType.text,
                                   textEditingController: userEmailController,
+                                  validator: (val) =>
+                                      !RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+                                              .hasMatch(val!)
+                                          ? 'Enter an email'
+                                          : null,
                                 ),
                                 CustomTextField.customPasswordField(
                                   context: context,
+                                  validator: (val) =>
+                                      val!.isEmpty ? 'Enter a password' : null,
                                   onTap: () {
                                     Provider.of<ObscureTextState>(context,
                                             listen: false)
@@ -111,14 +117,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     CustomButton.customBtnLogin(
                       buttonName: 'Sign In',
-                      onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackUtil.stylishSnackBar(
-                              text:
-                                  ' Email :${userEmailController.text}, Password : ${userPassController.text}',
-                              context: context),
-                        );
-                      },
+                      onTap: () {},
                       bgColor: Colors.black,
                       textColor: Colors.white,
                     ),

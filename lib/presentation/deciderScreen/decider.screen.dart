@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
 import 'package:scretask/app/constants/app.assets.dart';
 import 'package:scretask/app/routes/app.routes.dart';
 import 'package:scretask/presentation/widgets/custom.button.dart';
 import 'package:scretask/presentation/widgets/custom.styles.dart';
-
-import '../../core/services/photo.service.dart';
 
 class DeciderScreen extends StatelessWidget {
   @override
@@ -63,10 +60,8 @@ class DeciderScreen extends StatelessWidget {
                         bgColor: Colors.white,
                         buttonName: 'Register',
                         onTap: () {
-                          // Navigator.of(context)
-                          //     .pushNamed(AppRouter.signUpRoute);
-                          Provider.of<PhotoService>(context, listen: false)
-                              .selectFile();
+                          Navigator.of(context)
+                              .pushNamed(AppRouter.signUpRoute);
                         },
                         textColor: Colors.black87,
                       ),
@@ -76,9 +71,7 @@ class DeciderScreen extends StatelessWidget {
                         bgColor: Colors.transparent,
                         buttonName: 'Sign In',
                         onTap: () {
-                          // Navigator.of(context).pushNamed(AppRouter.loginRoute);
-                          Provider.of<PhotoService>(context, listen: false)
-                              .upload();
+                          Navigator.of(context).pushNamed(AppRouter.loginRoute);
                         },
                         textColor: Colors.white,
                       ),
