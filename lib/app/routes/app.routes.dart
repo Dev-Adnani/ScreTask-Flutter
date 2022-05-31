@@ -5,6 +5,7 @@ import 'package:scretask/presentation/loginScreen/login.screen.dart';
 import 'package:scretask/presentation/signupScreen/signup.screen.dart';
 import 'package:scretask/presentation/splashScreen/splash.screen.dart';
 import 'package:scretask/presentation/taskScreens/createTaskScreen/create.tasks.screen.dart';
+import 'package:scretask/presentation/taskScreens/detailsTaskScreen/details.tasks.screen.dart';
 import 'package:scretask/presentation/taskScreens/healthTaskScreen/health.tasks.screen.dart';
 import 'package:scretask/presentation/taskScreens/noTaskScreen/no.tasks.screen.dart';
 import 'package:scretask/presentation/taskScreens/personalTaskScreen/personal.tasks.screen.dart';
@@ -20,11 +21,21 @@ class AppRouter {
   static const String noTaskRoute = "/noTask";
   static const String loginRoute = "/login";
   static const String deciderRoute = "/decider";
-
   static const String signUpRoute = "/signup";
+  static const String detailsRoute = "/details";
 
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case detailsRoute:
+        {
+          return MaterialPageRoute(
+            builder: (context) => DetailsTaskScreen(
+              detailsTasksArgs: ModalRoute.of(context)!.settings.arguments
+                  as DetailsTasksArgs,
+            ),
+            settings: settings,
+          );
+        }
       case deciderRoute:
         {
           return MaterialPageRoute(

@@ -141,11 +141,9 @@ class SignUpScreen extends StatelessWidget {
                                 context: context,
                               ),
                             );
-                          }
-                          else
-                          {
-                             Provider.of<PhotoService>(context, listen: false)
-                            .upload(context: context);
+                          } else {
+                            Provider.of<PhotoService>(context, listen: false)
+                                .upload(context: context);
                           }
                         }
                       },

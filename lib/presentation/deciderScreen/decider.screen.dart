@@ -10,77 +10,86 @@ class DeciderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              Flexible(
+        child: CustomScrollView(
+          reverse: true,
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Center(
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        child: Lottie.asset(AppAssets.welcome),
+                    Flexible(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              child: Lottie.asset(AppAssets.welcome),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "Task It Out",
+                            style: kHeadline,
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            child: Text(
+                              "Bring  your tasks,\nManage it from mobile \nand desktop and web.",
+                              style: kBodyText,
+                              textAlign: TextAlign.center,
+                            ),
+                          )
+                        ],
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      "Task It Out",
-                      style: kHeadline,
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      child: Text(
-                        "Bring  your tasks,\nManage it from mobile \nand desktop and web.",
-                        style: kBodyText,
-                        textAlign: TextAlign.center,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[850],
+                        borderRadius: BorderRadius.circular(18),
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: CustomButton.customBtnLogin(
+                              bgColor: Colors.white,
+                              buttonName: 'Register',
+                              onTap: () {
+                                Navigator.of(context)
+                                    .pushNamed(AppRouter.signUpRoute);
+                              },
+                              textColor: Colors.black87,
+                            ),
+                          ),
+                          Expanded(
+                            child: CustomButton.customBtnLogin(
+                              bgColor: Colors.transparent,
+                              buttonName: 'Sign In',
+                              onTap: () {
+                                Navigator.of(context)
+                                    .pushNamed(AppRouter.loginRoute);
+                              },
+                              textColor: Colors.white,
+                            ),
+                          ),
+                        ],
                       ),
                     )
                   ],
                 ),
               ),
-              Container(
-                height: 60,
-                decoration: BoxDecoration(
-                  color: Colors.grey[850],
-                  borderRadius: BorderRadius.circular(18),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: CustomButton.customBtnLogin(
-                        bgColor: Colors.white,
-                        buttonName: 'Register',
-                        onTap: () {
-                          Navigator.of(context)
-                              .pushNamed(AppRouter.signUpRoute);
-                        },
-                        textColor: Colors.black87,
-                      ),
-                    ),
-                    Expanded(
-                      child: CustomButton.customBtnLogin(
-                        bgColor: Colors.transparent,
-                        buttonName: 'Sign In',
-                        onTap: () {
-                          Navigator.of(context).pushNamed(AppRouter.loginRoute);
-                        },
-                        textColor: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

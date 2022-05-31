@@ -15,11 +15,7 @@ class DisplayPhotoSignUp extends StatelessWidget {
         ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: Provider.of<PhotoService>(context, listen: true).file == null
-                ? Image.network(
-                    'https://avatars.githubusercontent.com/u/61565182?v=4',
-                    height: 60,
-                    width: 60,
-                  )
+                ? Container()
                 : Image.file(
                     height: 60,
                     width: 60,

@@ -1,7 +1,15 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:scretask/app/routes/app.routes.dart';
 import 'package:scretask/core/models/taskType.model.dart';
+import 'package:scretask/presentation/taskScreens/detailsTaskScreen/details.tasks.screen.dart';
 import 'package:scretask/presentation/widgets/snackbar.widget.dart';
+
+enum TaskTypes {
+  work,
+  health,
+  personal,
+}
 
 class TaskType extends StatelessWidget {
   TaskType({Key? key}) : super(key: key);
@@ -58,7 +66,12 @@ class TaskType extends StatelessWidget {
 
   Widget _buildTask(BuildContext context, TaskTypeModel task) {
     return GestureDetector(
-      onTap: task.callback,
+      onTap: () {
+        Navigator.of(context).pushNamed(
+          AppRouter.detailsRoute,
+          arguments: DetailsTasksArgs(taskType: task.title!),
+        );
+      },
       child: Container(
         padding: EdgeInsets.all(15),
         decoration: BoxDecoration(

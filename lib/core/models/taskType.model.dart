@@ -9,7 +9,6 @@ class TaskTypeModel {
   Color? iconColor;
   Color? btnColor;
   bool isLast;
-  VoidCallback? callback;
   num? left;
   num? done;
 
@@ -22,7 +21,6 @@ class TaskTypeModel {
     this.isLast = false,
     this.done,
     this.left,
-    this.callback,
   });
 
   static List<TaskTypeModel> generateTask({required BuildContext context}) {
@@ -35,9 +33,6 @@ class TaskTypeModel {
         btnColor: AppColors.kYellow,
         left: 3,
         done: 1,
-        callback: () {
-          Navigator.of(context).pushNamed(AppRouter.personalTaskRoute);
-        },
       ),
       TaskTypeModel(
         iconData: Icons.cases_rounded,
@@ -47,9 +42,6 @@ class TaskTypeModel {
         btnColor: AppColors.kRed,
         left: 2,
         done: 0,
-        callback: () {
-          Navigator.of(context).pushNamed(AppRouter.workTaskRoute);
-        },
       ),
       TaskTypeModel(
         iconData: Icons.favorite_rounded,
@@ -59,9 +51,6 @@ class TaskTypeModel {
         btnColor: AppColors.kBlue,
         left: 1,
         done: 1,
-        callback: () {
-          Navigator.of(context).pushNamed(AppRouter.healthTaskRoute);
-        },
       ),
       TaskTypeModel(isLast: true),
     ];
