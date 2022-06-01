@@ -1,6 +1,4 @@
 //Main File
-// import 'package:device_preview/device_preview.dart';
-// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scretask/app/providers/app.provider.dart';
@@ -10,10 +8,6 @@ import 'package:provider/provider.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const Lava());
-  // runApp(DevicePreview(
-  //   enabled: !kReleaseMode,
-  //   builder: (context) => Lava(),
-  // ));
 }
 
 class Lava extends StatelessWidget {
@@ -43,7 +37,7 @@ class Core extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: AppRouter.generateRoute,
-      initialRoute: AppRouter.splashRoute,
+      initialRoute: AppRouter.homeRoute,
     );
   }
 }

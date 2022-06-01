@@ -9,18 +9,20 @@ class DetailsTaskScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: detailAppBar(
-        context: context,
-        taskType: detailsTasksArgs.taskType,
-      ),
-      body: SingleChildScrollView(
-        physics: AlwaysScrollableScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TaskData(),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: detailAppBar(
+          context: context,
+          taskType: detailsTasksArgs.taskType,
+        ),
+        body: SingleChildScrollView(
+          physics: AlwaysScrollableScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TaskData(),
+            ],
+          ),
         ),
       ),
     );

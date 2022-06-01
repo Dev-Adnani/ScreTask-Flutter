@@ -11,9 +11,6 @@ import 'package:scretask/presentation/taskScreens/noTaskScreen/no.tasks.screen.d
 class AppRouter {
   static const String homeRoute = "/home";
   static const String splashRoute = "/splash";
-  static const String healthTaskRoute = "/health";
-  static const String workTaskRoute = "/work";
-  static const String personalTaskRoute = "/personal";
   static const String createTaskRoute = "/create";
   static const String noTaskRoute = "/noTask";
   static const String loginRoute = "/login";
@@ -76,7 +73,12 @@ class AppRouter {
             builder: (_) => const NoTaskScreen(),
           );
         }
+      default:
+        {
+          return MaterialPageRoute(
+            builder: (_) => DeciderScreen(),
+          );
+        }
     }
-    return null;
   }
 }
