@@ -13,22 +13,23 @@ class DisplayPhotoSignUp extends StatelessWidget {
     return Row(
       children: [
         ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Provider.of<PhotoService>(context, listen: true).file == null
-                ? Container()
-                : Image.file(
-                    height: 60,
-                    width: 60,
-                    File(
-                      Provider.of<PhotoService>(context, listen: true)
-                          .file!
-                          .files
-                          .first
-                          .path!,
-                    ),
-                  )),
+          borderRadius: BorderRadius.circular(8.0),
+          child: Provider.of<PhotoService>(context, listen: true).file == null
+              ? null
+              : Image.file(
+                  height: 60,
+                  width: 60,
+                  File(
+                    Provider.of<PhotoService>(context, listen: true)
+                        .file!
+                        .files
+                        .first
+                        .path!,
+                  ),
+                ),
+        ),
         SizedBox(
-          width: 20,
+          width: 25,
         ),
         Container(
           height: 60,

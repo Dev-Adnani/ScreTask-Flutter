@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:scretask/app/constants/app.const.dart';
 import 'package:scretask/app/routes/app.routes.dart';
+import 'package:scretask/core/services/local.auth.service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,10 +17,23 @@ class _SplashScreenState extends State<SplashScreen> {
   void _initiateCache() async {
     final prefs = await SharedPreferences.getInstance();
     final String? action = prefs.getString(AppConst.splashKey);
+    var d_auth = await Provider.of<LocalAuthService>(context, listen: false)
+        .authenticate();
+
     if (action == null) {
-      Navigator.of(context).pushNamed(AppRouter.deciderRoute);
+      if (d_auth) {
+        Navigator.of(context).pushNamed(AppRouter.deciderRoute);
+      } else {
+        await Provider.of<LocalAuthService>(context, listen: false)
+            .authenticate();
+      }
     } else {
-      Navigator.of(context).pushNamed(AppRouter.homeRoute);
+      if (d_auth) {
+        Navigator.of(context).pushNamed(AppRouter.homeRoute);
+      } else {
+        await Provider.of<LocalAuthService>(context, listen: false)
+            .authenticate();
+      }
     }
   }
 
