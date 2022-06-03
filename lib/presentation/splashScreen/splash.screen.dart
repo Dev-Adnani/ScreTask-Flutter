@@ -1,46 +1,34 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:scretask/app/constants/app.assets.dart';
 import 'package:scretask/app/constants/app.const.dart';
 import 'package:scretask/app/routes/app.routes.dart';
 import 'package:scretask/core/services/local.auth.service.dart';
+import 'package:scretask/presentation/widgets/snackbar.widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  void _initiateCache() async {
+  void _initiateCache({required BuildContext context}) async {
     final prefs = await SharedPreferences.getInstance();
     final String? action = prefs.getString(AppConst.splashKey);
     var d_auth = await Provider.of<LocalAuthService>(context, listen: false)
         .authenticate();
-
-    if (action == null) {
-      if (d_auth) {
+    if (d_auth) {
+      if (action == null) {
         Navigator.of(context).pushNamed(AppRouter.deciderRoute);
       } else {
-        await Provider.of<LocalAuthService>(context, listen: false)
-            .authenticate();
+        Navigator.of(context).pushNamed(AppRouter.homeRoute);
       }
     } else {
-      if (d_auth) {
-        Navigator.of(context).pushNamed(AppRouter.homeRoute);
-      } else {
-        await Provider.of<LocalAuthService>(context, listen: false)
-            .authenticate();
-      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackUtil.stylishSnackBar(
+          text: 'Please Complete Biometric Auth',
+          context: context,
+        ),
+      );
     }
-  }
-
-  @override
-  void initState() {
-    Timer(const Duration(seconds: 1), _initiateCache);
-    super.initState();
   }
 
   @override
@@ -48,14 +36,32 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Text(
-          'Scre Task',
-          style: TextStyle(
-            fontSize: 42,
-            color: Colors.black,
+          child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              'Scre Task',
+              style: TextStyle(
+                fontSize: 42,
+                color: Colors.black,
+              ),
+            ),
           ),
-        ),
-      ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: IconButton(
+              icon: Image.asset(
+                AppAssets.fprint,
+              ),
+              onPressed: () {
+                _initiateCache(context: context);
+              },
+              iconSize: 130,
+            ),
+          ),
+        ],
+      )),
     );
   }
 }

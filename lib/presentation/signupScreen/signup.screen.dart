@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scretask/app/routes/app.routes.dart';
+import 'package:scretask/core/notifiers/authentication.notifer.dart';
 import 'package:scretask/core/services/photo.service.dart';
 import 'package:scretask/core/util/obscure.text.util.dart';
 import 'package:scretask/presentation/signupScreen/widget/display.signup.screen.dart';
@@ -10,7 +11,8 @@ import 'package:scretask/presentation/widgets/custom.styles.dart';
 import 'package:scretask/presentation/widgets/snackbar.widget.dart';
 
 class SignUpScreen extends StatelessWidget {
-  final TextEditingController userEmailController = TextEditingController();
+  final TextEditingController userSecurityCodeController =
+      TextEditingController();
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController userPassController = TextEditingController();
 
@@ -70,21 +72,21 @@ class SignUpScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 CustomTextField.customTextField(
+                                  hintText: 'Email',
+                                  enabled: false,
+                                  initialValue:
+                                      Provider.of<AuthenticationNotifier>(
+                                              context,
+                                              listen: false)
+                                          .getEmail,
+                                  inputType: TextInputType.text,
+                                ),
+                                CustomTextField.customTextField(
                                   hintText: 'Username',
                                   inputType: TextInputType.text,
                                   textEditingController: userNameController,
                                   validator: (val) =>
                                       val!.isEmpty ? 'Enter a username' : null,
-                                ),
-                                CustomTextField.customTextField(
-                                  hintText: 'Email',
-                                  inputType: TextInputType.text,
-                                  textEditingController: userEmailController,
-                                  validator: (val) =>
-                                      !RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
-                                              .hasMatch(val!)
-                                          ? 'Enter an email'
-                                          : null,
                                 ),
                                 CustomTextField.customPasswordField(
                                   context: context,
@@ -96,6 +98,16 @@ class SignUpScreen extends StatelessWidget {
                                         .toggleObs();
                                   },
                                   textEditingController: userPassController,
+                                ),
+                                CustomTextField.customTextField(
+                                  hintText: 'Security Code',
+                                  inputType: TextInputType.number,
+                                  maxLength: 4,
+                                  textEditingController:
+                                      userSecurityCodeController,
+                                  validator: (val) => val!.isEmpty
+                                      ? 'Enter Security Code'
+                                      : null,
                                 ),
                               ],
                             ),
@@ -146,7 +158,18 @@ class SignUpScreen extends StatelessWidget {
                             );
                           } else {
                             Provider.of<PhotoService>(context, listen: false)
-                                .upload(context: context);
+                                .upload(context: context)
+                                .whenComplete(() {
+                              Provider.of<AuthenticationNotifier>(context,
+                                      listen: false)
+                                  .createAccount(
+                                context: context,
+                                username: userNameController.text,
+                                secretcodeinput:
+                                    userSecurityCodeController.text,
+                                userpassword: userPassController.text,
+                              );
+                            });
                           }
                         }
                       },

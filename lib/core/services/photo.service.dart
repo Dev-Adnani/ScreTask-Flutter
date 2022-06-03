@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:cloudinary_sdk/cloudinary_sdk.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:scretask/app/constants/app.const.dart';
 
 class PhotoService with ChangeNotifier {
@@ -23,7 +22,7 @@ class PhotoService with ChangeNotifier {
     notifyListeners();
   }
 
-  Future upload({required BuildContext context}) async {
+  Future upload<bool>({required BuildContext context}) async {
     final response = await cloudinary.uploadResource(
       CloudinaryUploadResource(
         filePath: file!.files.single.path,
@@ -46,8 +45,10 @@ class PhotoService with ChangeNotifier {
       print('Get your image from with ${response.secureUrl}');
       photo_url = response.secureUrl;
       notifyListeners();
+      return true;
     } else {
       print('Nahi Hua');
+      return false;
     }
   }
 
@@ -69,13 +70,7 @@ class PhotoService with ChangeNotifier {
             SizedBox(
               height: 10,
             ),
-            CircularPercentIndicator(
-              radius: 60.0,
-              lineWidth: 5.0,
-              percent: 1.0,
-              center: Text("${(count / total) * 100}"),
-              progressColor: Colors.green,
-            ),
+            CircularProgressIndicator(),
           ],
         ),
       ),

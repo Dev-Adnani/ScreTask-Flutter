@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scretask/presentation/deciderScreen/decider.screen.dart';
+import 'package:scretask/presentation/emailVerificationScreen/verification.screen.dart';
 import 'package:scretask/presentation/homeScreen/home.screen.dart';
 import 'package:scretask/presentation/loginScreen/login.screen.dart';
 import 'package:scretask/presentation/signupScreen/signup.screen.dart';
@@ -16,10 +17,17 @@ class AppRouter {
   static const String loginRoute = "/login";
   static const String deciderRoute = "/decider";
   static const String signUpRoute = "/signup";
+  static const String verificationRoute = "/verification";
   static const String detailsRoute = "/details";
 
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case verificationRoute:
+        {
+          return MaterialPageRoute(
+            builder: (_) => VerificationScreen(),
+          );
+        }
       case detailsRoute:
         {
           return MaterialPageRoute(

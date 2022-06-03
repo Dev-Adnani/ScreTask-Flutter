@@ -1,28 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:scretask/app/routes/app.routes.dart';
 import 'package:scretask/core/notifiers/authentication.notifer.dart';
-import 'package:scretask/core/util/obscure.text.util.dart';
 import 'package:scretask/presentation/widgets/custom.button.dart';
 import 'package:scretask/presentation/widgets/custom.text.field.dart';
 import 'package:scretask/presentation/widgets/custom.styles.dart';
 
-class LoginScreen extends StatelessWidget {
+class VerificationScreen extends StatelessWidget {
   final TextEditingController userEmailController = TextEditingController();
-  final TextEditingController userPassController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  LoginScreen({Key? key}) : super(key: key);
+  VerificationScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    _userLogin() {
+    _userEmail() {
       if (_formKey.currentState!.validate()) {
-        var authNotifier =
-            Provider.of<AuthenticationNotifier>(context, listen: false);
-        authNotifier.userLogin(
-            context: context,
-            useremail: userEmailController.text,
-            userpassword: userPassController.text);
+        Provider.of<AuthenticationNotifier>(context, listen: false)
+            .sendEmail(useremail: userEmailController.text, context: context);
       }
     }
 
@@ -31,16 +24,6 @@ class LoginScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios_new,
-            size: 24,
-            color: Colors.black,
-          ),
-        ),
       ),
       body: SafeArea(
         child: CustomScrollView(
@@ -59,14 +42,14 @@ class LoginScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Welcome back.",
+                            "Hey 😉",
                             style: kHeadline,
                           ),
                           SizedBox(
                             height: 10,
                           ),
                           Text(
-                            "You've been missed!",
+                            "Happy To Have You!",
                             style: kBodyText2,
                           ),
                           SizedBox(
@@ -86,54 +69,22 @@ class LoginScreen extends StatelessWidget {
                                           ? 'Enter an email'
                                           : null,
                                 ),
-                                CustomTextField.customPasswordField(
-                                  context: context,
-                                  validator: (val) =>
-                                      val!.isEmpty ? 'Enter a password' : null,
-                                  onTap: () {
-                                    Provider.of<ObscureTextUtil>(context,
-                                            listen: false)
-                                        .toggleObs();
-                                  },
-                                  textEditingController: userPassController,
-                                ),
                               ],
                             ),
-                          )
+                          ),
+                          SizedBox(
+                            height: 40,
+                          ),
+                          CustomButton.customBtnLogin(
+                            buttonName: 'Send Email',
+                            onTap: () {
+                              _userEmail();
+                            },
+                            bgColor: Colors.black,
+                            textColor: Colors.white,
+                          ),
                         ],
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Dont't have an account? ",
-                          style: kBodyText,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context)
-                                .pushNamed(AppRouter.signUpRoute);
-                          },
-                          child: Text(
-                            'Register',
-                            style: kBodyText.copyWith(
-                              color: Colors.black,
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    CustomButton.customBtnLogin(
-                      buttonName: 'Sign In',
-                      onTap: () {
-                        _userLogin();
-                      },
-                      bgColor: Colors.black,
-                      textColor: Colors.white,
                     ),
                   ],
                 ),

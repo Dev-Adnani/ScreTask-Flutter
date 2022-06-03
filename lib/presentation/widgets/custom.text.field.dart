@@ -6,17 +6,23 @@ import 'package:scretask/presentation/widgets/custom.styles.dart';
 class CustomTextField {
   static customTextField({
     required hintText,
-    required TextEditingController textEditingController,
+    TextEditingController? textEditingController,
     required inputType,
+    bool? enabled,
+    int? maxLength,
+    String? initialValue,
     String? Function(String?)? validator,
     Function(String)? onChanged,
   }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: TextFormField(
+        enabled: enabled,
         onChanged: onChanged,
+        maxLength: maxLength,
         controller: textEditingController,
         validator: validator,
+        initialValue: initialValue,
         style: kBodyText.copyWith(color: Colors.black),
         keyboardType: inputType,
         textInputAction: TextInputAction.next,

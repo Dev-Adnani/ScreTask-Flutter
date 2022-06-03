@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:scretask/app/constants/app.colors.dart';
-import 'package:scretask/app/routes/app.routes.dart';
 
 class TaskTypeModel {
   IconData? iconData;
