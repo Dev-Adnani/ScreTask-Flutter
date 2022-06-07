@@ -66,7 +66,7 @@ class DeciderScreen extends StatelessWidget {
                               buttonName: 'Register',
                               onTap: () {
                                 Navigator.of(context)
-                                    .pushNamed(AppRouter.signUpRoute);
+                                    .pushNamed(AppRouter.verificationRoute);
                               },
                               textColor: Colors.black87,
                             ),

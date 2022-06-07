@@ -13,8 +13,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthenticationNotifier with ChangeNotifier {
   final AuthenticationAPI _authenticationAPI = AuthenticationAPI();
+
   String? _userJWT;
-  String? get getUserJWT => _userJWT;
+  String? get userjwt => _userJWT;
+  set userjwt(String? value) {
+    _userJWT = value;
+  }
 
   String? _secretCode;
   String? get getSecretCode => _secretCode;
@@ -41,7 +45,7 @@ class AuthenticationNotifier with ChangeNotifier {
           context: context,
         ),
       );
-      Navigator.of(context).pushNamed(AppRouter.signUpRoute);
+      Navigator.of(context).pushReplacementNamed(AppRouter.signUpRoute);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackUtil.stylishSnackBar(
@@ -84,6 +88,7 @@ class AuthenticationNotifier with ChangeNotifier {
             );
       } else {
         Provider.of<PhotoService>(context, listen: false).file = null;
+        notifyListeners();
         ScaffoldMessenger.of(context).showSnackBar(
             SnackUtil.stylishSnackBar(text: authData, context: context));
       }
@@ -138,9 +143,11 @@ class AuthenticationNotifier with ChangeNotifier {
   Future userLogout({required BuildContext context}) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(AppConst.splashKey).whenComplete(
-          () => {
-            Navigator.of(context).pushNamed(AppRouter.loginRoute),
-          },
-        );
+      () {
+        userjwt = null;
+        notifyListeners();
+        Navigator.of(context).pushReplacementNamed(AppRouter.deciderRoute);
+      },
+    );
   }
 }
