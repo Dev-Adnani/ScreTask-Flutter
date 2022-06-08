@@ -17,9 +17,9 @@ class SplashScreen extends StatelessWidget {
         .authenticate();
     if (d_auth) {
       if (action == null) {
-        Navigator.of(context).pushNamed(AppRouter.deciderRoute);
+        Navigator.of(context).pushReplacementNamed(AppRouter.deciderRoute);
       } else {
-        Navigator.of(context).pushNamed(AppRouter.homeRoute);
+        Navigator.of(context).pushReplacementNamed(AppRouter.homeRoute);
       }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(

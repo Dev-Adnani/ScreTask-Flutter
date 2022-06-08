@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scretask/app/routes/app.routes.dart';
 import 'package:scretask/core/notifiers/user.data.notifier.dart';
+import 'package:scretask/presentation/aboutScreen/about.user.dart';
 import 'package:scretask/presentation/homeScreen/widgets/home.bottomNav.dart';
-import 'package:scretask/presentation/homeScreen/widgets/home.createTask.dart';
-import 'package:scretask/presentation/homeScreen/widgets/home.appbar.dart';
-import 'package:scretask/presentation/homeScreen/widgets/home.taskType.dart';
+import 'package:scretask/presentation/homeScreen/widgets/home.section.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -22,6 +21,9 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  int pageIndex = 0;
+  final PageController homePageController = PageController();
+
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(
@@ -30,28 +32,23 @@ class _HomeScreenState extends State<HomeScreen> {
               ? false
               : true,
       child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: homeAppBar(context: context),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        body: PageView(
+          controller: homePageController,
           children: [
-            CreateTask(),
-            Container(
-              padding: EdgeInsets.all(20),
-              child: Text(
-                'Tasks',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Expanded(
-              child: TaskType(),
-            )
+            HomeSection(),
+            AboutScreen(),
           ],
+          physics: NeverScrollableScrollPhysics(),
+          onPageChanged: (page) {
+            setState(() {
+              pageIndex = page;
+            });
+          },
         ),
-        bottomNavigationBar: homeBottomNav(),
+        bottomNavigationBar: homeBottomNav(
+          controller: homePageController,
+          index: pageIndex,
+        ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
           shape: RoundedRectangleBorder(

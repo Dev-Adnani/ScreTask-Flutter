@@ -1,6 +1,8 @@
+import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:scretask/app/constants/app.colors.dart';
 
-Widget homeBottomNav() {
+Widget homeBottomNav({required int index, required PageController controller}) {
   return Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.only(
@@ -20,22 +22,24 @@ Widget homeBottomNav() {
         topLeft: Radius.circular(30),
         topRight: Radius.circular(30),
       ),
-      child: BottomNavigationBar(
+      child: CustomNavigationBar(
+        strokeColor: Colors.transparent,
         backgroundColor: Colors.white,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        selectedItemColor: Colors.blueAccent,
-        unselectedItemColor: Colors.grey.withOpacity(0.5),
+        currentIndex: index,
+        onTap: (val) {
+          index = val;
+          controller.jumpToPage(val);
+        },
+        selectedColor: AppColors.kRedDark,
+        unSelectedColor: Colors.grey.withOpacity(0.5),
         items: [
-          BottomNavigationBarItem(
-            label: 'Home',
+          CustomNavigationBarItem(
             icon: Icon(
               Icons.home_rounded,
               size: 30,
             ),
           ),
-          BottomNavigationBarItem(
-            label: 'Person',
+          CustomNavigationBarItem(
             icon: Icon(
               Icons.person_rounded,
               size: 30,
