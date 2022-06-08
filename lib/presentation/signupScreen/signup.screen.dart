@@ -8,6 +8,7 @@ import 'package:scretask/presentation/signupScreen/widget/display.signup.screen.
 import 'package:scretask/presentation/widgets/custom.button.dart';
 import 'package:scretask/presentation/widgets/custom.text.field.dart';
 import 'package:scretask/presentation/widgets/custom.styles.dart';
+import 'package:scretask/presentation/widgets/loading.dialog.dart';
 import 'package:scretask/presentation/widgets/snackbar.widget.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -160,15 +161,17 @@ class SignUpScreen extends StatelessWidget {
                             Provider.of<PhotoService>(context, listen: false)
                                 .upload(context: context)
                                 .whenComplete(() {
+                              LoadingDialog.showLoaderDialog(context: context);
                               Provider.of<AuthenticationNotifier>(context,
                                       listen: false)
                                   .createAccount(
-                                context: context,
-                                username: userNameController.text,
-                                secretcodeinput:
-                                    userSecurityCodeController.text,
-                                userpassword: userPassController.text,
-                              );
+                                    context: context,
+                                    username: userNameController.text,
+                                    secretcodeinput:
+                                        userSecurityCodeController.text,
+                                    userpassword: userPassController.text,
+                                  )
+                                  .whenComplete(() => Navigator.pop(context));
                             });
                           }
                         }

@@ -24,42 +24,48 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: homeAppBar(context: context),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CreateTask(),
-          Container(
-            padding: EdgeInsets.all(20),
-            child: Text(
-              'Tasks',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
+    return IgnorePointer(
+      ignoring:
+          Provider.of<UserDataNotifier>(context, listen: true).getAllowTouch
+              ? false
+              : true,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: homeAppBar(context: context),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CreateTask(),
+            Container(
+              padding: EdgeInsets.all(20),
+              child: Text(
+                'Tasks',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: TaskType(),
-          )
-        ],
-      ),
-      bottomNavigationBar: homeBottomNav(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+            Expanded(
+              child: TaskType(),
+            )
+          ],
         ),
-        elevation: 0,
-        backgroundColor: Colors.black,
-        onPressed: () {
-          Navigator.of(context).pushNamed(AppRouter.createTaskRoute);
-        },
-        child: Icon(
-          Icons.add,
-          size: 35,
+        bottomNavigationBar: homeBottomNav(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          elevation: 0,
+          backgroundColor: Colors.black,
+          onPressed: () {
+            Navigator.of(context).pushNamed(AppRouter.createTaskRoute);
+          },
+          child: Icon(
+            Icons.add,
+            size: 35,
+          ),
         ),
       ),
     );

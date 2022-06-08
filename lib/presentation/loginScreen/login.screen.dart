@@ -6,6 +6,7 @@ import 'package:scretask/core/util/obscure.text.util.dart';
 import 'package:scretask/presentation/widgets/custom.button.dart';
 import 'package:scretask/presentation/widgets/custom.text.field.dart';
 import 'package:scretask/presentation/widgets/custom.styles.dart';
+import 'package:scretask/presentation/widgets/loading.dialog.dart';
 
 class LoginScreen extends StatelessWidget {
   final TextEditingController userEmailController = TextEditingController();
@@ -17,12 +18,15 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     _userLogin() {
       if (_formKey.currentState!.validate()) {
+        LoadingDialog.showLoaderDialog(context: context);
         var authNotifier =
             Provider.of<AuthenticationNotifier>(context, listen: false);
-        authNotifier.userLogin(
-            context: context,
-            useremail: userEmailController.text,
-            userpassword: userPassController.text);
+        authNotifier
+            .userLogin(
+                context: context,
+                useremail: userEmailController.text,
+                userpassword: userPassController.text)
+            .whenComplete(() => {Navigator.pop(context)});
       }
     }
 

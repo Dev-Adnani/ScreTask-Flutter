@@ -74,11 +74,6 @@ class AuthenticationNotifier with ChangeNotifier {
       final prefs = await SharedPreferences.getInstance();
       var response = UserAuthModel.fromJson(jsonDecode(userData));
       dynamic authData = response.data;
-      print("response : ${response}");
-      print("Email : ${response.emailVerification!}");
-      print("Authentication : ${response.authentication!}");
-      print("Auth : ${authData}");
-
       if (response.emailVerification! && response.authentication!) {
         _userJWT = authData;
         notifyListeners();

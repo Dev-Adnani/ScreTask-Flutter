@@ -1,9 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:scretask/app/routes/app.routes.dart';
 import 'package:scretask/core/api/user.api.dart';
 import 'package:scretask/core/models/user.data.model.dart';
-import 'package:scretask/core/notifiers/authentication.notifer.dart';
 import 'package:scretask/presentation/widgets/snackbar.widget.dart';
 
 class UserDataNotifier with ChangeNotifier {
@@ -21,6 +21,9 @@ class UserDataNotifier with ChangeNotifier {
   String? _photo;
   String? get getPhoto => _photo;
 
+  bool _allowTouch = false;
+  bool get getAllowTouch => _allowTouch;
+
   Future<bool> decodeUserData({
     required BuildContext context,
   }) async {
@@ -28,8 +31,6 @@ class UserDataNotifier with ChangeNotifier {
     var response = userDataModelFromJson(userData);
     bool received = response.received;
     if (!received) {
-      Provider.of<AuthenticationNotifier>(context, listen: false).userjwt =
-          null;
       notifyListeners();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackUtil.stylishSnackBar(
@@ -45,6 +46,7 @@ class UserDataNotifier with ChangeNotifier {
       _id = userData.id;
       _name = userData.name;
       _photo = userData.photo;
+      _allowTouch = true;
       notifyListeners();
       return true;
     }

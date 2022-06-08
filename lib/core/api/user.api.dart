@@ -1,8 +1,8 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
+import 'package:scretask/app/constants/app.const.dart';
 import 'package:scretask/app/routes/api.routes.dart';
-import 'package:scretask/core/notifiers/authentication.notifer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserDataAPI {
   final client = http.Client();
@@ -11,6 +11,8 @@ class UserDataAPI {
   Future decodeUserData({
     required BuildContext context,
   }) async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? action = prefs.getString(AppConst.splashKey);
     const subUrl = '/auth/verify';
     final Uri uri = Uri.parse(ApiRoutes.baseurl + subUrl);
     final http.Response response = await client.get(
@@ -19,8 +21,7 @@ class UserDataAPI {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Access-Control-Allow-Origin': "*",
-        'Authorization':
-            Provider.of<AuthenticationNotifier>(context, listen: false).userjwt!
+        'Authorization': action!
       },
     );
     final dynamic body = response.body;

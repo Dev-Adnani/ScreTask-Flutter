@@ -4,6 +4,7 @@ import 'package:scretask/core/notifiers/authentication.notifer.dart';
 import 'package:scretask/presentation/widgets/custom.button.dart';
 import 'package:scretask/presentation/widgets/custom.text.field.dart';
 import 'package:scretask/presentation/widgets/custom.styles.dart';
+import 'package:scretask/presentation/widgets/loading.dialog.dart';
 
 class VerificationScreen extends StatelessWidget {
   final TextEditingController userEmailController = TextEditingController();
@@ -14,6 +15,7 @@ class VerificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     _userEmail() {
       if (_formKey.currentState!.validate()) {
+        LoadingDialog.showLoaderDialog(context: context);
         Provider.of<AuthenticationNotifier>(context, listen: false)
             .sendEmail(useremail: userEmailController.text, context: context);
       }

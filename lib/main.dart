@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);  
   runApp(const Lava());
 }
 
@@ -28,6 +30,7 @@ class Core extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: Colors.transparent),
     );
+
     return MaterialApp(
       title: 'SCRETASK',
       theme: ThemeData(
