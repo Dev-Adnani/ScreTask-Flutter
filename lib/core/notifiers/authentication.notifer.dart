@@ -141,7 +141,8 @@ class AuthenticationNotifier with ChangeNotifier {
       () {
         userjwt = null;
         notifyListeners();
-        Navigator.of(context).pushReplacementNamed(AppRouter.deciderRoute);
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            AppRouter.deciderRoute, (Route<dynamic> route) => false);
       },
     );
   }

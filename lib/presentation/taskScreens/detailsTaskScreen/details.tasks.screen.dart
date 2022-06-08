@@ -11,6 +11,7 @@ class DetailsTaskScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: detailAppBar(
           context: context,
           taskType: detailsTasksArgs.taskType,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:scretask/app/constants/app.assets.dart';
 import 'package:scretask/core/notifiers/authentication.notifer.dart';
 import 'package:scretask/core/notifiers/user.data.notifier.dart';
 
@@ -16,11 +17,9 @@ AppBar homeAppBar({required BuildContext context}) {
           width: 45,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.network(
-              data.getPhoto != null
-                  ? data.getPhoto!
-                  : "https://www.citypng.com/public/uploads/preview/loading-load-icon-transparent-png-11639609114lctjenyas8.png",
-            ),
+            child: data.getPhoto != null
+                ? Image.network(data.getPhoto!)
+                : Image.asset(AppAssets.loading),
           ),
         ),
         SizedBox(
