@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 AppBar detailAppBar({required BuildContext context, required String taskType}) {
   return AppBar(
-    toolbarHeight: 50,
     backgroundColor: Colors.white,
+    elevation: 0,
+    automaticallyImplyLeading: false,
     leading: IconButton(
       onPressed: () {
         Navigator.of(context).pop();

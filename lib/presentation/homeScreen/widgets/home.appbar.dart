@@ -26,7 +26,7 @@ AppBar homeAppBar({required BuildContext context}) {
           width: 10,
         ),
         Text(
-          'Hi, ${data.getName != null ? data.getName : "Loading"}!',
+          'Hi, ${data.getName != null ? data.getName : ""}!',
           style: TextStyle(
             fontSize: 26,
             color: Colors.black,

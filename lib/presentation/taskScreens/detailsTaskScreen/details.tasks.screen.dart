@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:scretask/core/notifiers/task.notiifer.dart';
+import 'package:scretask/core/notifiers/user.data.notifier.dart';
 import 'package:scretask/presentation/taskScreens/detailsTaskScreen/widget/detail.appbar.dart';
 import 'package:scretask/presentation/taskScreens/detailsTaskScreen/widget/task.data.dart';
+import 'package:scretask/presentation/taskScreens/noTaskScreen/no.tasks.screen.dart';
 
 class DetailsTaskScreen extends StatelessWidget {
   final DetailsTasksArgs detailsTasksArgs;
@@ -20,8 +24,32 @@ class DetailsTaskScreen extends StatelessWidget {
           physics: AlwaysScrollableScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TaskData(),
+              Consumer<TaskNotifier>(
+                builder: (context, notifier, _) {
+                  return FutureBuilder(
+                    future: notifier.getTaskType(
+                        userId: Provider.of<UserDataNotifier>(context,
+                                listen: false)
+                            .getID!,
+                        type: detailsTasksArgs.taskType,
+                        context: context),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return CircularProgressIndicator();
+                      } else if (!snapshot.hasData) {
+                        return Center(
+                          child: noTaskScreen(type: detailsTasksArgs.taskType),
+                        );
+                      } else {
+                        var _snapshot = snapshot.data as List;
+                        return taskTile(snapshot: _snapshot, context: context);
+                      }
+                    },
+                  );
+                },
+              ),
             ],
           ),
         ),

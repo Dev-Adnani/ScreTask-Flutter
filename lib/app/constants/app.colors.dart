@@ -14,4 +14,10 @@ class AppColors {
   static Color kBlueDark = const Color(0xFFC0D3F8);
 
   static Color txtBackgroundColor = const Color(0xff191720);
+
+  static List backColorList = [
+    kBlue,
+    kRed,
+    kYellow,
+  ];
 }

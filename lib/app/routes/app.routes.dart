@@ -7,13 +7,11 @@ import 'package:scretask/presentation/signupScreen/signup.screen.dart';
 import 'package:scretask/presentation/splashScreen/splash.screen.dart';
 import 'package:scretask/presentation/taskScreens/createTaskScreen/create.tasks.screen.dart';
 import 'package:scretask/presentation/taskScreens/detailsTaskScreen/details.tasks.screen.dart';
-import 'package:scretask/presentation/taskScreens/noTaskScreen/no.tasks.screen.dart';
 
 class AppRouter {
   static const String homeRoute = "/home";
   static const String splashRoute = "/splash";
   static const String createTaskRoute = "/create";
-  static const String noTaskRoute = "/noTask";
   static const String loginRoute = "/login";
   static const String deciderRoute = "/decider";
   static const String signUpRoute = "/signup";
@@ -75,12 +73,7 @@ class AppRouter {
             builder: (_) => const CreateTaskScreen(),
           );
         }
-      case noTaskRoute:
-        {
-          return MaterialPageRoute(
-            builder: (_) => const NoTaskScreen(),
-          );
-        }
+
       default:
         {
           return MaterialPageRoute(
