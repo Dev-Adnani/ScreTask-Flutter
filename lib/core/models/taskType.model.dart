@@ -18,8 +18,6 @@ class TaskTypeModel {
     this.btnColor,
     this.iconColor,
     this.isLast = false,
-    this.done,
-    this.left,
   });
 
   static List<TaskTypeModel> generateTask({required BuildContext context}) {
@@ -30,8 +28,6 @@ class TaskTypeModel {
         bgColor: AppColors.kYellowLight,
         iconColor: AppColors.kYellowDark,
         btnColor: AppColors.kYellow,
-        left: 3,
-        done: 1,
       ),
       TaskTypeModel(
         iconData: Icons.cases_rounded,
@@ -39,8 +35,6 @@ class TaskTypeModel {
         bgColor: AppColors.kRedLight,
         iconColor: AppColors.kRedDark,
         btnColor: AppColors.kRed,
-        left: 2,
-        done: 0,
       ),
       TaskTypeModel(
         iconData: Icons.favorite_rounded,
@@ -48,8 +42,6 @@ class TaskTypeModel {
         bgColor: AppColors.kBlueLight,
         iconColor: AppColors.kBlueDark,
         btnColor: AppColors.kBlue,
-        left: 1,
-        done: 1,
       ),
       TaskTypeModel(isLast: true),
     ];
