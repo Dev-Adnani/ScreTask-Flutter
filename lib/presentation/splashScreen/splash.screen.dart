@@ -5,6 +5,7 @@ import 'package:scretask/app/constants/app.const.dart';
 import 'package:scretask/app/routes/app.routes.dart';
 import 'package:scretask/core/services/local.auth.service.dart';
 import 'package:scretask/presentation/widgets/snackbar.widget.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -15,19 +16,27 @@ class SplashScreen extends StatelessWidget {
     final String? action = prefs.getString(AppConst.splashKey);
     var d_auth = await Provider.of<LocalAuthService>(context, listen: false)
         .authenticate();
-    if (d_auth) {
+    if (!kIsWeb) {
+      if (d_auth) {
+        if (action == null) {
+          Navigator.of(context).pushReplacementNamed(AppRouter.deciderRoute);
+        } else {
+          Navigator.of(context).pushReplacementNamed(AppRouter.homeRoute);
+        }
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackUtil.stylishSnackBar(
+            text: 'Please Complete Biometric Auth',
+            context: context,
+          ),
+        );
+      }
+    } else {
       if (action == null) {
         Navigator.of(context).pushReplacementNamed(AppRouter.deciderRoute);
       } else {
         Navigator.of(context).pushReplacementNamed(AppRouter.homeRoute);
       }
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackUtil.stylishSnackBar(
-          text: 'Please Complete Biometric Auth',
-          context: context,
-        ),
-      );
     }
   }
 

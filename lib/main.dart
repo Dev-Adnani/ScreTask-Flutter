@@ -4,8 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:scretask/app/providers/app.provider.dart';
 import 'package:scretask/app/routes/app.routes.dart';
 import 'package:provider/provider.dart';
+import 'web_url/configure_nonweb.dart'
+    if (dart.library.html) 'web_url/configure_web.dart';
 
 void main() {
+  configureApp();
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
