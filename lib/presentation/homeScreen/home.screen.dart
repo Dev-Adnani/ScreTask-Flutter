@@ -5,7 +5,6 @@ import 'package:scretask/core/notifiers/user.data.notifier.dart';
 import 'package:scretask/presentation/aboutScreen/about.user.dart';
 import 'package:scretask/presentation/homeScreen/widgets/home.bottomNav.dart';
 import 'package:scretask/presentation/homeScreen/widgets/home.section.dart';
-import 'package:scretask/presentation/widgets/loading.dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -36,9 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
         body: PageView(
           controller: homePageController,
           children: [
-            // Provider.of<UserDataNotifier>(context, listen: true).getAllowTouch
-            //     ? LoadingDialog.showLoaderDialog(context: context)
-            //     : null,
             HomeSection(),
             AboutScreen(),
           ],

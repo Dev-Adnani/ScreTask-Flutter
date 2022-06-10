@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scretask/app/routes/app.routes.dart';
 import 'package:scretask/core/api/user.api.dart';
 import 'package:scretask/core/models/user.data.model.dart';
+import 'package:scretask/presentation/widgets/loading.dialog.dart';
 import 'package:scretask/presentation/widgets/snackbar.widget.dart';
 
 class UserDataNotifier with ChangeNotifier {
@@ -28,6 +29,7 @@ class UserDataNotifier with ChangeNotifier {
     var userData = await _dataAPI.decodeUserData(context: context);
     var response = userDataModelFromJson(userData);
     bool received = response.received;
+
     if (!received) {
       notifyListeners();
       ScaffoldMessenger.of(context).showSnackBar(

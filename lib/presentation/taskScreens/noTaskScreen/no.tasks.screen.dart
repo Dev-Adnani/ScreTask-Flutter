@@ -8,9 +8,35 @@ Widget noTaskScreen({required String type}) {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        SizedBox(
+          height: 160,
+        ),
         Lottie.asset(AppAssets.noData),
         Text(
           'Looks Like You Could\nAdd Some $type Tasks',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget loadingData() {
+  return Center(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SizedBox(
+          height: 160,
+        ),
+        Lottie.asset(AppAssets.wait),
+        Text(
+          'Please Wait While We Load Your \n Data From Our Servers',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 22,

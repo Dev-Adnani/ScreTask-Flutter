@@ -37,7 +37,7 @@ class DetailsTaskScreen extends StatelessWidget {
                         context: context),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return CircularProgressIndicator();
+                        return loadingData();
                       } else if (!snapshot.hasData) {
                         return Center(
                           child: noTaskScreen(type: detailsTasksArgs.taskType),
