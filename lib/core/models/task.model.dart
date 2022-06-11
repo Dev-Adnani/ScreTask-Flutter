@@ -44,7 +44,7 @@ class Task {
   });
 
   String id;
-  int taskId;
+  String taskId;
   String userId;
   String taskTitle;
   String taskDesc;

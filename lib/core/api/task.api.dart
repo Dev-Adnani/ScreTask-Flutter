@@ -23,4 +23,15 @@ class TaskAPI {
     final dynamic body = response.body;
     return body;
   }
+
+  Future deleteTask({required String taskId}) async {
+    var subUrl = '/task/delete/$taskId';
+    final Uri uri = Uri.parse(ApiRoutes.baseurl + subUrl);
+    final http.Response response = await client.delete(
+      uri,
+      headers: headers,
+    );
+    final dynamic body = response.body;
+    return body;
+  }
 }

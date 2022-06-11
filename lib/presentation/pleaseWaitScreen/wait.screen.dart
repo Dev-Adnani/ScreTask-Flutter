@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/foundation/key.dart';
 import 'package:lottie/lottie.dart';
 import 'package:scretask/app/constants/app.assets.dart';
 

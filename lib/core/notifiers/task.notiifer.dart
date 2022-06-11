@@ -33,4 +33,19 @@ class TaskNotifier with ChangeNotifier {
           context: context));
     }
   }
+
+  Future deleteTask(
+      {required String taskId, required BuildContext context}) async {
+    try {
+      var data = await _taskAPI.deleteTask(taskId: taskId);
+      final Map<String, dynamic> parseData = await jsonDecode(data);
+      bool isDeleted = parseData['deleted'];
+      notifyListeners();
+      return isDeleted;
+    } on SocketException catch (_) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackUtil.stylishSnackBar(
+          text: 'Oops No You Need A Good Internet Connection',
+          context: context));
+    }
+  }
 }
