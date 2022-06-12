@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scretask/core/notifiers/task.notiifer.dart';
 import 'package:scretask/core/notifiers/user.data.notifier.dart';
-import 'package:scretask/presentation/taskScreens/detailsTaskScreen/widget/detail.appbar.dart';
-import 'package:scretask/presentation/taskScreens/detailsTaskScreen/widget/task.data.dart';
 import 'package:scretask/presentation/taskScreens/noTaskScreen/no.tasks.screen.dart';
+import 'package:scretask/presentation/taskScreens/taskTypeScreen/widget/task.tile.dart';
+import 'package:scretask/presentation/taskScreens/taskTypeScreen/widget/task.type.appbar.dart';
 
-class DetailsTaskScreen extends StatelessWidget {
-  final DetailsTasksArgs detailsTasksArgs;
-  const DetailsTaskScreen({Key? key, required this.detailsTasksArgs})
+class TaskTypeScreen extends StatelessWidget {
+  final TaskTypeArgs taskTypeArgs;
+  const TaskTypeScreen({Key? key, required this.taskTypeArgs})
       : super(key: key);
 
   @override
@@ -18,7 +18,7 @@ class DetailsTaskScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: detailAppBar(
           context: context,
-          taskType: detailsTasksArgs.taskType,
+          taskType: taskTypeArgs.taskType,
         ),
         body: SingleChildScrollView(
           physics: AlwaysScrollableScrollPhysics(),
@@ -30,17 +30,18 @@ class DetailsTaskScreen extends StatelessWidget {
                 builder: (context, notifier, _) {
                   return FutureBuilder(
                     future: notifier.getTaskType(
-                        userId: Provider.of<UserDataNotifier>(context,
-                                listen: false)
-                            .getID!,
-                        type: detailsTasksArgs.taskType,
-                        context: context),
+                      userId:
+                          Provider.of<UserDataNotifier>(context, listen: false)
+                              .getID!,
+                      type: taskTypeArgs.taskType,
+                      context: context,
+                    ),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return loadingData();
                       } else if (!snapshot.hasData) {
                         return Center(
-                          child: noTaskScreen(type: detailsTasksArgs.taskType),
+                          child: noTaskScreen(type: taskTypeArgs.taskType),
                         );
                       } else {
                         var _snapshot = snapshot.data as List;
@@ -58,7 +59,7 @@ class DetailsTaskScreen extends StatelessWidget {
   }
 }
 
-class DetailsTasksArgs {
+class TaskTypeArgs {
   final String taskType;
-  const DetailsTasksArgs({required this.taskType});
+  const TaskTypeArgs({required this.taskType});
 }

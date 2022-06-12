@@ -14,6 +14,7 @@ class AppColors {
   static Color kBlueDark = const Color(0xFFC0D3F8);
 
   static Color txtBackgroundColor = const Color(0xff191720);
+  static const Color perano = Color(0xFFB09DF2);
 
   static List backColorList = [
     kBlue,

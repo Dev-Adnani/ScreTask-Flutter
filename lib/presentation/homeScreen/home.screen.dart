@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scretask/app/routes/app.routes.dart';
+import 'package:scretask/core/notifiers/home.notifier.dart';
 import 'package:scretask/core/notifiers/user.data.notifier.dart';
 import 'package:scretask/presentation/aboutScreen/about.user.dart';
 import 'package:scretask/presentation/homeScreen/widgets/home.bottomNav.dart';
@@ -18,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     Provider.of<UserDataNotifier>(context, listen: false)
         .decodeUserData(context: context);
+    Provider.of<HomeNotifier>(context, listen: false).timeSetter();
     super.initState();
   }
 

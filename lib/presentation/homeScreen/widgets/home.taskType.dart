@@ -2,7 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:scretask/app/routes/app.routes.dart';
 import 'package:scretask/core/models/taskType.model.dart';
-import 'package:scretask/presentation/taskScreens/detailsTaskScreen/details.tasks.screen.dart';
+import 'package:scretask/presentation/taskScreens/taskTypeScreen/task.type.screen.dart';
 import 'package:scretask/presentation/widgets/snackbar.widget.dart';
 
 class TaskType extends StatelessWidget {
@@ -62,8 +62,8 @@ class TaskType extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).pushNamed(
-          AppRouter.detailsRoute,
-          arguments: DetailsTasksArgs(taskType: task.title!),
+          AppRouter.taskTypeRoute,
+          arguments: TaskTypeArgs(taskType: task.title!),
         );
       },
       child: Container(

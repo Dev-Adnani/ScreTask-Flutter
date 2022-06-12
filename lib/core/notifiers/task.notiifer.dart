@@ -21,7 +21,7 @@ class TaskNotifier with ChangeNotifier {
       final response = TaskModel.fromJson(jsonDecode(data));
       final _productReceived = response.received;
       final _productAvailable = response.available;
-      final _task = response.data;
+      _task = response.data;
       if (_productAvailable && _productReceived) {
         return _task;
       } else {
@@ -40,12 +40,15 @@ class TaskNotifier with ChangeNotifier {
       var data = await _taskAPI.deleteTask(taskId: taskId);
       final Map<String, dynamic> parseData = await jsonDecode(data);
       bool isDeleted = parseData['deleted'];
+      _task?.remove(taskId);
       notifyListeners();
       return isDeleted;
     } on SocketException catch (_) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackUtil.stylishSnackBar(
-          text: 'Oops No You Need A Good Internet Connection',
-          context: context));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackUtil.stylishSnackBar(
+            text: 'Oops No You Need A Good Internet Connection',
+            context: context),
+      );
     }
   }
 }

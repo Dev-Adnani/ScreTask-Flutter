@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-
-import '../../../app/routes/app.routes.dart';
+import 'package:provider/provider.dart';
+import 'package:scretask/app/routes/app.routes.dart';
+import 'package:scretask/core/notifiers/home.notifier.dart';
 
 class CreateTask extends StatelessWidget {
   const CreateTask({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,7 +37,7 @@ class CreateTask extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Good Morning!',
+                      Provider.of<HomeNotifier>(context, listen: false).status,
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.white,
@@ -48,7 +48,7 @@ class CreateTask extends StatelessWidget {
                       height: 10,
                     ),
                     Text(
-                      'Start Your Day By \nAdding Tasks :)',
+                      Provider.of<HomeNotifier>(context, listen: false).quote,
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey[700],
