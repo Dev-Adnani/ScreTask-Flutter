@@ -51,4 +51,48 @@ class TaskNotifier with ChangeNotifier {
       );
     }
   }
+
+  Future addTask({
+    required String userId,
+    required String task_title,
+    required String task_desc,
+    required String task_type,
+    required String task_date,
+    required BuildContext context,
+  }) async {
+    try {
+      var data = await _taskAPI.addTask(
+          userId: userId,
+          task_title: task_title,
+          task_desc: task_desc,
+          task_type: task_type,
+          task_date: task_date);
+
+      final Map<String, dynamic> parseData = await jsonDecode(data);
+      bool isAdded = parseData['added'];
+      dynamic status = parseData['data'];
+      print(data);
+      if (isAdded) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackUtil.stylishSnackBar(
+            text: status,
+            context: context,
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackUtil.stylishSnackBar(
+            text: "Some Error Occured",
+            context: context,
+          ),
+        );
+      }
+    } on SocketException catch (_) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackUtil.stylishSnackBar(
+            text: 'Oops No You Need A Good Internet Connection',
+            context: context),
+      );
+    }
+  }
 }

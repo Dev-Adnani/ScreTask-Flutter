@@ -15,13 +15,6 @@ AppBar detailAppBar({required BuildContext context, required String taskType}) {
         color: Colors.black,
       ),
     ),
-    actions: [
-      Icon(
-        Icons.more_vert,
-        size: 35,
-        color: Colors.black,
-      ),
-    ],
     title: Column(
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.start,

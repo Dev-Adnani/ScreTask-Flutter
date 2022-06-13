@@ -78,8 +78,20 @@ Widget taskTile({required snapshot, required BuildContext context}) {
                 children: [
                   Text(
                     task.taskTitle,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Text(
+                    task.taskDesc,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 12,
                       color: Colors.black,
                       fontWeight: FontWeight.w700,
                     ),

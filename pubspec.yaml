@@ -10,6 +10,7 @@ dependencies:
   cloudinary_sdk: ^4.0.1+9
   cupertino_icons: ^1.0.2
   custom_navigation_bar: ^0.8.2
+  date_picker_timeline: ^1.2.3
   dotted_border: ^2.0.0+2
   file_picker: ^4.6.0
   fl_chart: ^0.51.0

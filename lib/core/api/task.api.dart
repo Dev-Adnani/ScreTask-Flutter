@@ -34,4 +34,27 @@ class TaskAPI {
     final dynamic body = response.body;
     return body;
   }
+
+  Future addTask({
+    required String userId,
+    required String task_title,
+    required String task_desc,
+    required String task_type,
+    required String task_date,
+  }) async {
+    const subUrl = '/task/add';
+    final Uri uri = Uri.parse(ApiRoutes.baseurl + subUrl);
+    final http.Response response = await client.post(uri,
+        headers: headers,
+        body: jsonEncode({
+          "user_id": userId,
+          "task_title": task_title,
+          "task_desc": task_desc,
+          "task_type": task_type,
+          "task_date": task_date,
+          "task_completed": false,
+        }));
+    final dynamic body = response.body;
+    return body;
+  }
 }

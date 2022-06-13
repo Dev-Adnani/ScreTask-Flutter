@@ -3,6 +3,7 @@ import 'package:provider/single_child_widget.dart';
 import 'package:scretask/core/notifiers/authentication.notifer.dart';
 import 'package:scretask/core/notifiers/home.notifier.dart';
 import 'package:scretask/core/notifiers/task.notiifer.dart';
+import 'package:scretask/core/notifiers/type.notifier.dart';
 import 'package:scretask/core/notifiers/user.data.notifier.dart';
 import 'package:scretask/core/services/local.auth.service.dart';
 import 'package:scretask/core/services/photo.service.dart';
@@ -17,5 +18,6 @@ class AppProvider {
     ChangeNotifierProvider(create: (_) => UserDataNotifier()),
     ChangeNotifierProvider(create: (_) => TaskNotifier()),
     ChangeNotifierProvider(create: (_) => HomeNotifier()),
+    ChangeNotifierProvider(create: (_) => TypeNotifier()),
   ];
 }

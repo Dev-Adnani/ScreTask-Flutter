@@ -21,4 +21,6 @@ class AppColors {
     kRed,
     kYellow,
   ];
+
+  static Color mediumPurple = const Color(0xff9371ea);
 }

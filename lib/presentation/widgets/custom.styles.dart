@@ -23,3 +23,10 @@ const kBodyText2 = TextStyle(
   fontWeight: FontWeight.w500,
   color: Colors.black,
 );
+
+
+ kColorText({required Color color}) => TextStyle(
+  color: color,
+  fontSize: 16,
+  fontWeight: FontWeight.bold,
+);

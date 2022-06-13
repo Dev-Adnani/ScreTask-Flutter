@@ -1,3 +1,4 @@
+import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scretask/core/notifiers/task.notiifer.dart';
@@ -24,8 +25,18 @@ class TaskTypeScreen extends StatelessWidget {
           physics: AlwaysScrollableScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Container(
+                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                height: 100,
+                child: DatePicker(
+                  DateTime.now(),
+                  daysCount: 30,
+                  initialSelectedDate: DateTime.now(),
+                  selectionColor: Colors.black,
+                  selectedTextColor: Colors.white,
+                ),
+              ),
               Consumer<TaskNotifier>(
                 builder: (context, notifier, _) {
                   return FutureBuilder(
