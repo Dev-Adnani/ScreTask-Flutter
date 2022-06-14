@@ -51,7 +51,7 @@ class AppRouter {
       case deciderRoute:
         {
           return MaterialPageRoute(
-            builder: (_) => DeciderScreen(),
+            builder: (_) => const DeciderScreen(),
           );
         }
       case loginRoute:
@@ -89,7 +89,7 @@ class AppRouter {
       default:
         {
           return MaterialPageRoute(
-            builder: (_) => DeciderScreen(),
+            builder: (_) => const DeciderScreen(),
           );
         }
     }

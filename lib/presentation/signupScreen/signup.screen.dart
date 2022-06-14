@@ -31,7 +31,7 @@ class SignUpScreen extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios_new,
             size: 24,
             color: Colors.black,
@@ -54,18 +54,18 @@ class SignUpScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Register",
                             style: kHeadline,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
-                          Text(
+                          const Text(
                             "Create new account to get started.",
                             style: kBodyText2,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 60,
                           ),
                           Form(
@@ -113,17 +113,17 @@ class SignUpScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
-                          DisplayPhotoSignUp(),
+                          const DisplayPhotoSignUp(),
                         ],
                       ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "Already have an account? ",
                           style: kBodyText,
                         ),
@@ -141,7 +141,7 @@ class SignUpScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     CustomButton.customBtnLogin(
@@ -158,10 +158,10 @@ class SignUpScreen extends StatelessWidget {
                               ),
                             );
                           } else {
+                            LoadingDialog.showLoaderDialog(context: context);
                             Provider.of<PhotoService>(context, listen: false)
                                 .upload(context: context)
                                 .whenComplete(() {
-                              LoadingDialog.showLoaderDialog(context: context);
                               Provider.of<AuthenticationNotifier>(context,
                                       listen: false)
                                   .createAccount(

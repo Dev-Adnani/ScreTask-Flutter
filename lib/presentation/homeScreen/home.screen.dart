@@ -36,16 +36,16 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         body: PageView(
           controller: homePageController,
-          children: [
-            HomeSection(),
-            AboutScreen(),
-          ],
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           onPageChanged: (page) {
             setState(() {
               pageIndex = page;
             });
           },
+          children: const [
+            HomeSection(),
+            AboutScreen(),
+          ],
         ),
         bottomNavigationBar: homeBottomNav(
           controller: homePageController,
@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onPressed: () {
             Navigator.of(context).pushNamed(AppRouter.createTaskRoute);
           },
-          child: Icon(
+          child: const Icon(
             Icons.add,
             size: 35,
           ),

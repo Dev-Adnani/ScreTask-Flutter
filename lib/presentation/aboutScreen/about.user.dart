@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
-import 'package:scretask/app/constants/app.colors.dart';
 import 'package:scretask/core/notifiers/user.data.notifier.dart';
 
 class AboutScreen extends StatefulWidget {
@@ -37,7 +36,7 @@ class _AboutScreenState extends State<AboutScreen> {
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           centerTitle: true,
-          title: Text(
+          title: const Text(
             'User Profile',
             style: TextStyle(
               fontSize: 18,
@@ -65,24 +64,24 @@ class _AboutScreenState extends State<AboutScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 25.0),
+                const SizedBox(height: 25.0),
                 Text(
                   userProfileData.getName!,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   userProfileData.getEmail!,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 15.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 4.0),
+                const SizedBox(height: 4.0),
                 Padding(
-                  padding: EdgeInsets.all(30.0),
+                  padding: const EdgeInsets.all(30.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -91,10 +90,10 @@ class _AboutScreenState extends State<AboutScreen> {
                         children: [
                           Text(
                             '${userProfileData.getTotalTasks}',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(height: 5.0),
-                          Text(
+                          const SizedBox(height: 5.0),
+                          const Text(
                             'TASKS ADDED',
                             style: TextStyle(color: Colors.grey),
                           )
@@ -105,10 +104,10 @@ class _AboutScreenState extends State<AboutScreen> {
                         children: [
                           Text(
                             '${userProfileData.getCompletedTasks}',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(height: 5.0),
-                          Text(
+                          const SizedBox(height: 5.0),
+                          const Text(
                             'TASK COMPLETED',
                             style: TextStyle(color: Colors.grey),
                           )
@@ -117,13 +116,13 @@ class _AboutScreenState extends State<AboutScreen> {
                     ],
                   ),
                 ),
-                Divider(
+                const Divider(
                   thickness: 3,
                   color: Colors.black,
                 ),
                 Column(
                   children: [
-                    Text(
+                    const Text(
                       'Task Chart',
                       style: TextStyle(
                         color: Colors.black,
@@ -132,13 +131,13 @@ class _AboutScreenState extends State<AboutScreen> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: PieChart(
                         dataMap: dataMap,
                         chartType: ChartType.ring,
                         baseChartColor: Colors.grey[50]!.withOpacity(0.15),
                         colorList: colorList,
-                        chartValuesOptions: ChartValuesOptions(
+                        chartValuesOptions: const ChartValuesOptions(
                           showChartValuesInPercentage: true,
                           showChartValueBackground: true,
                         ),

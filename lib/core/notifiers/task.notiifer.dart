@@ -1,3 +1,5 @@
+// ignore_for_file: list_remove_unrelated_type, use_build_context_synchronously, non_constant_identifier_names, no_leading_underscores_for_local_identifiers
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -39,7 +41,6 @@ class TaskNotifier with ChangeNotifier {
     try {
       var data = await _taskAPI.deleteTask(taskId: taskId);
       final Map<String, dynamic> parseData = await jsonDecode(data);
-      print(data);
       bool isDeleted = parseData['deleted'];
       _task?.remove(taskId);
       notifyListeners();
@@ -117,8 +118,6 @@ class TaskNotifier with ChangeNotifier {
       final Map<String, dynamic> parseData = await jsonDecode(data);
       bool isUpdated = parseData['updated'];
       dynamic status = parseData['data'];
-      print(isUpdated);
-      print(status);
       if (isUpdated) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackUtil.stylishSnackBar(

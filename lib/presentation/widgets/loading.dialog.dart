@@ -5,12 +5,12 @@ class LoadingDialog {
     AlertDialog alert = AlertDialog(
       content: Row(
         children: [
-          CircularProgressIndicator(),
-          SizedBox(
+          const CircularProgressIndicator(),
+          const SizedBox(
             width: 5,
           ),
           Container(
-              margin: EdgeInsets.only(left: 7), child: Text("Loading...")),
+              margin: const EdgeInsets.only(left: 7), child: const Text("Loading...")),
         ],
       ),
     );

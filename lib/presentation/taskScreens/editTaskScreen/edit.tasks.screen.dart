@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:intl/intl.dart';
@@ -15,7 +17,7 @@ import 'package:scretask/presentation/widgets/loading.dialog.dart';
 class EditTaskScreen extends StatefulWidget {
   final EditTaskArgs editTaskArgs;
 
-  EditTaskScreen({Key? key, required this.editTaskArgs}) : super(key: key);
+  const EditTaskScreen({Key? key, required this.editTaskArgs}) : super(key: key);
 
   @override
   State<EditTaskScreen> createState() => _EditTaskScreenState();
@@ -47,7 +49,6 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     var myFormat = DateFormat('d-MM-yyyy');
-    bool check = widget.editTaskArgs.taskStatus;
     return Scaffold(
       appBar: editAppBar(context: context, taskId: widget.editTaskArgs.task_id),
       body: Stack(
@@ -55,29 +56,27 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
           Column(
             children: [
               Container(
-                padding: EdgeInsets.fromLTRB(20, 20, 20, 40),
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
                 width: width,
                 child: Column(
                   children: [
-                    Container(
-                      child: Form(
-                        key: _formKey,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomTextField.customTextField(
-                              hintText: 'Title',
-                              textEditingController: titleController,
-                              minLines: 1,
-                            ),
-                            CustomTextField.customTextField(
-                              hintText: 'Description',
-                              textEditingController: descController,
-                              minLines: 1,
-                              maxLines: 3,
-                            ),
-                          ],
-                        ),
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomTextField.customTextField(
+                            hintText: 'Title',
+                            textEditingController: titleController,
+                            minLines: 1,
+                          ),
+                          CustomTextField.customTextField(
+                            hintText: 'Description',
+                            textEditingController: descController,
+                            minLines: 1,
+                            maxLines: 3,
+                          ),
+                        ],
                       ),
                     ),
                     Row(
@@ -103,7 +102,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                             ),
                           ],
                         ),
-                        Spacer(),
+                        const Spacer(),
                         IconButton(
                           onPressed: () {
                             Provider.of<TaskDataNotifier>(context,
@@ -121,7 +120,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.fromLTRB(20, 0, 20, 5),
                     child: Text(
                       'Select Type',
@@ -131,22 +130,22 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                           fontSize: 18),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                     width: MediaQuery.of(context).size.width,
                     child: selectType(
                       context: context,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 35,
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(20, 0, 20, 5),
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Task Status',
                           style: TextStyle(
                             color: Colors.black,
@@ -177,7 +176,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: Container(
+            child: SizedBox(
               height: 80,
               width: width,
               child: Row(
@@ -207,22 +206,21 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                           Navigator.of(context).pushNamed(AppRouter.homeRoute);
                         });
                       }
-                      print("Check $check");
                     },
                     child: Container(
-                      child: Text(
+                      alignment: Alignment.center,
+                      margin: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+                      width: width - 40,
+                      decoration: BoxDecoration(
+                        color: AppColors.perano,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child:   const Text(
                         'Edit Task',
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w700,
                             fontSize: 18),
-                      ),
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
-                      width: width - 40,
-                      decoration: BoxDecoration(
-                        color: AppColors.perano,
-                        borderRadius: BorderRadius.circular(30),
                       ),
                     ),
                   ),

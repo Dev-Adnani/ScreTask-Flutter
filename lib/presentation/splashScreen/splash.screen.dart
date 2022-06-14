@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scretask/app/constants/app.assets.dart';
@@ -14,10 +16,10 @@ class SplashScreen extends StatelessWidget {
   void _initiateCache({required BuildContext context}) async {
     final prefs = await SharedPreferences.getInstance();
     final String? action = prefs.getString(AppConst.splashKey);
-    var d_auth = await Provider.of<LocalAuthService>(context, listen: false)
+    var dAuth = await Provider.of<LocalAuthService>(context, listen: false)
         .authenticate();
     if (!kIsWeb) {
-      if (d_auth) {
+      if (dAuth) {
         if (action == null) {
           Navigator.of(context).pushReplacementNamed(AppRouter.deciderRoute);
         } else {
@@ -47,7 +49,7 @@ class SplashScreen extends StatelessWidget {
       body: Center(
           child: Stack(
         children: [
-          Align(
+          const Align(
             alignment: Alignment.center,
             child: Text(
               'Scre Task',

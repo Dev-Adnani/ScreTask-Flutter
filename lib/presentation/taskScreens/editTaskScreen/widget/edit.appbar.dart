@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_const
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scretask/app/routes/app.routes.dart';
@@ -12,9 +14,9 @@ AppBar editAppBar({
   return AppBar(
     backgroundColor: Colors.white,
     elevation: 0,
-    title: Text(
+    title: const Text(
       'Edit Task',
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 26,
         color: Colors.black,
         fontWeight: FontWeight.bold,
@@ -25,7 +27,7 @@ AppBar editAppBar({
       onPressed: () {
         Navigator.of(context).pop();
       },
-      icon: Icon(
+      icon: const Icon(
         Icons.arrow_back_ios,
         size: 20,
         color: Colors.black,
@@ -33,7 +35,7 @@ AppBar editAppBar({
     ),
     actions: [
       IconButton(
-        icon: Icon(
+        icon: const Icon(
           Icons.delete,
           color: Colors.red,
           size: 25,

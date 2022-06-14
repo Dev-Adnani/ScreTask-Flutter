@@ -43,18 +43,18 @@ class VerificationScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Hey 😉",
                             style: kHeadline,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
-                          Text(
+                          const Text(
                             "Happy To Have You!",
                             style: kBodyText2,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 60,
                           ),
                           Form(
@@ -74,7 +74,7 @@ class VerificationScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 40,
                           ),
                           CustomButton.customBtnLogin(

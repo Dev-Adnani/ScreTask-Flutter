@@ -20,10 +20,10 @@ class HomeSection extends StatelessWidget {
               body: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CreateTask(),
+                  const CreateTask(),
                   Container(
-                    padding: EdgeInsets.all(20),
-                    child: Text(
+                    padding: const EdgeInsets.all(20),
+                    child: const Text(
                       'Tasks',
                       style: TextStyle(
                         fontSize: 22,
@@ -31,13 +31,13 @@ class HomeSection extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: TaskType(),
+                  const Expanded(
+                    child:  TaskType(),
                   )
                 ],
               ),
             )
-          : WaitingScreen(),
+          : const WaitingScreen(),
     );
   }
 }

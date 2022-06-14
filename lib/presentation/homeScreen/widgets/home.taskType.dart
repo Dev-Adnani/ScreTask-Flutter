@@ -6,16 +6,16 @@ import 'package:scretask/presentation/taskScreens/taskTypeScreen/task.type.scree
 import 'package:scretask/presentation/widgets/snackbar.widget.dart';
 
 class TaskType extends StatelessWidget {
-  TaskType({Key? key}) : super(key: key);
+  const TaskType({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final taskList = TaskTypeModel.generateTask(context: context);
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: GridView.builder(
         itemCount: taskList.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
@@ -39,16 +39,16 @@ class TaskType extends StatelessWidget {
         );
       },
       child: DottedBorder(
-        padding: EdgeInsets.all(15),
-        radius: Radius.circular(20),
+        padding: const EdgeInsets.all(15),
+        radius: const Radius.circular(20),
         borderType: BorderType.RRect,
-        dashPattern: [10, 10],
+        dashPattern: const [10, 10],
         color: Colors.grey,
         strokeWidth: 2,
-        child: Center(
+        child: const Center(
           child: Text(
             '+ Add',
-            style: TextStyle(
+            style:  TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -67,7 +67,7 @@ class TaskType extends StatelessWidget {
         );
       },
       child: Container(
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
           color: task.bgColor,
           borderRadius: BorderRadius.circular(20),
@@ -80,17 +80,17 @@ class TaskType extends StatelessWidget {
               color: task.iconColor,
               size: 35,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Text(
               task.title!,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
           ],

@@ -9,7 +9,7 @@ AppBar detailAppBar({required BuildContext context, required String taskType}) {
       onPressed: () {
         Navigator.of(context).pop();
       },
-      icon: Icon(
+      icon: const Icon(
         Icons.arrow_back_ios,
         size: 20,
         color: Colors.black,
@@ -21,7 +21,7 @@ AppBar detailAppBar({required BuildContext context, required String taskType}) {
       children: [
         Text(
           '$taskType Task',
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 20,
             color: Colors.black,
           ),

@@ -27,7 +27,7 @@ class DisplayPhotoSignUp extends StatelessWidget {
                   ),
                 ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 25,
         ),
         Container(

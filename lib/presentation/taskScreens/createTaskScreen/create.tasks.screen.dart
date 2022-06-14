@@ -29,29 +29,27 @@ class CreateTaskScreen extends StatelessWidget {
           Column(
             children: [
               Container(
-                padding: EdgeInsets.fromLTRB(20, 20, 20, 40),
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
                 width: width,
                 child: Column(
                   children: [
-                    Container(
-                      child: Form(
-                        key: _formKey,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomTextField.customTextField(
-                              hintText: 'Title',
-                              textEditingController: titleController,
-                              minLines: 1,
-                            ),
-                            CustomTextField.customTextField(
-                              hintText: 'Description',
-                              textEditingController: descController,
-                              minLines: 1,
-                              maxLines: 3,
-                            ),
-                          ],
-                        ),
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomTextField.customTextField(
+                            hintText: 'Title',
+                            textEditingController: titleController,
+                            minLines: 1,
+                          ),
+                          CustomTextField.customTextField(
+                            hintText: 'Description',
+                            textEditingController: descController,
+                            minLines: 1,
+                            maxLines: 3,
+                          ),
+                        ],
                       ),
                     ),
                     Row(
@@ -77,7 +75,7 @@ class CreateTaskScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Spacer(),
+                        const Spacer(),
                         IconButton(
                           onPressed: () {
                             Provider.of<TaskDataNotifier>(context, listen: false)
@@ -94,7 +92,7 @@ class CreateTaskScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.fromLTRB(20, 0, 20, 5),
                     child: Text(
                       'Select Type',
@@ -104,7 +102,7 @@ class CreateTaskScreen extends StatelessWidget {
                           fontSize: 18),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                     width: MediaQuery.of(context).size.width,
                     child: selectType(
@@ -117,7 +115,7 @@ class CreateTaskScreen extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: Container(
+            child: SizedBox(
               height: 80,
               width: width,
               child: Row(
@@ -150,19 +148,19 @@ class CreateTaskScreen extends StatelessWidget {
                       }
                     },
                     child: Container(
-                      child: Text(
+                      alignment: Alignment.center,
+                      margin: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+                      width: width - 40,
+                      decoration: BoxDecoration(
+                        color: AppColors.perano,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: const Text(
                         'Create Task',
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w700,
                             fontSize: 18),
-                      ),
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
-                      width: width - 40,
-                      decoration: BoxDecoration(
-                        color: AppColors.perano,
-                        borderRadius: BorderRadius.circular(30),
                       ),
                     ),
                   ),

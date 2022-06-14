@@ -10,7 +10,7 @@ class SnackUtil {
       margin: const EdgeInsets.fromLTRB(40, 0, 40, 100),
       content: Text(
         text,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.black,
         ),
       ),

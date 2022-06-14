@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -15,6 +17,7 @@ class AuthenticationNotifier with ChangeNotifier {
   final AuthenticationAPI _authenticationAPI = AuthenticationAPI();
 
   String? _userJWT;
+  // ignore: unnecessary_getters_setters
   String? get userjwt => _userJWT;
   set userjwt(String? value) {
     _userJWT = value;
@@ -94,9 +97,7 @@ class AuthenticationNotifier with ChangeNotifier {
           context: context,
         ),
       );
-    } catch (e) {
-      print(e);
-    }
+    } 
   }
 
   Future userLogin(
@@ -130,8 +131,6 @@ class AuthenticationNotifier with ChangeNotifier {
           context: context,
         ),
       );
-    } catch (e) {
-      print(e);
     }
   }
 

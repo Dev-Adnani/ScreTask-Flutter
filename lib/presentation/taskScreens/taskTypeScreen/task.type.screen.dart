@@ -22,12 +22,12 @@ class TaskTypeScreen extends StatelessWidget {
           taskType: taskTypeArgs.taskType,
         ),
         body: SingleChildScrollView(
-          physics: AlwaysScrollableScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                 height: 100,
                 child: DatePicker(
                   DateTime.now(),
@@ -55,8 +55,8 @@ class TaskTypeScreen extends StatelessWidget {
                           child: noTaskScreen(type: taskTypeArgs.taskType),
                         );
                       } else {
-                        var _snapshot = snapshot.data as List;
-                        return taskTile(snapshot: _snapshot, context: context);
+                        var dSnapshot = snapshot.data as List;
+                        return taskTile(snapshot: dSnapshot, context: context);
                       }
                     },
                   );

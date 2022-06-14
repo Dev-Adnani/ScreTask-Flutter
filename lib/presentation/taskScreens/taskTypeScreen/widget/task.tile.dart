@@ -10,7 +10,7 @@ import 'package:scretask/presentation/taskScreens/editTaskScreen/edit.tasks.scre
 
 Widget taskTile({required snapshot, required BuildContext context}) {
   return ListView.builder(
-    physics: NeverScrollableScrollPhysics(),
+    physics: const NeverScrollableScrollPhysics(),
     shrinkWrap: true,
     itemCount: snapshot.length,
     itemBuilder: (context, index) {
@@ -25,7 +25,7 @@ Widget taskTile({required snapshot, required BuildContext context}) {
                   return AlertDialog(
                     content: Text(
                       "Are you sure you want to delete ${task.taskTitle}?",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         color: Colors.black,
                         fontWeight: FontWeight.w700,
@@ -33,18 +33,18 @@ Widget taskTile({required snapshot, required BuildContext context}) {
                     ),
                     actions: <Widget>[
                       TextButton(
-                        child: Text(
+                        child: const Text(
                           "Cancel",
-                          style: TextStyle(color: Colors.black),
+                          style:  TextStyle(color: Colors.black),
                         ),
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
                       ),
                       TextButton(
-                        child: Text(
+                        child: const Text(
                           "Delete",
-                          style: TextStyle(color: Colors.red),
+                          style:  TextStyle(color: Colors.red),
                         ),
                         onPressed: () {
                           Provider.of<TaskNotifier>(context, listen: false)
@@ -75,88 +75,86 @@ Widget taskTile({required snapshot, required BuildContext context}) {
             );
           },
           child: Container(
-            padding: EdgeInsets.all(12),
-            margin: EdgeInsets.only(left: 15, right: 15, top: 15),
+            padding: const EdgeInsets.all(12),
+            margin: const EdgeInsets.only(left: 15, right: 15, top: 15),
             decoration: BoxDecoration(
               color: AppColors.backColorList[Random().nextInt(
                 AppColors.backColorList.length,
               )],
               borderRadius: BorderRadius.circular(20),
             ),
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    task.taskTitle,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w700,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  task.taskTitle,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Text(
+                  task.taskDesc,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    Image.asset(AppAssets.clock, width: 20),
+                    const SizedBox(width: 8),
+                    Text(
+                      task.taskDate,
                     ),
-                  ),
-                  Text(
-                    task.taskDesc,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w700,
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Wrap(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: AppColors.perano.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                        task.taskType,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Image.asset(AppAssets.clock, width: 20),
-                      SizedBox(width: 8),
-                      Text(
-                        task.taskDate,
+                    const SizedBox(width: 8),
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color:
+                            (task.taskCompleted ? Colors.green : Colors.red)
+                                .withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  Wrap(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: AppColors.perano.withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Text(
-                          task.taskType,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
-                          ),
+                      child: Text(
+                        task.taskCompleted ? 'Done' : 'On Going',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      SizedBox(width: 8),
-                      Container(
-                        padding: EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color:
-                              (task.taskCompleted ? Colors.green : Colors.red)
-                                  .withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Text(
-                          task.taskCompleted ? 'Done' : 'On Going',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ),
@@ -169,14 +167,15 @@ Widget slideLeftBackground() {
   return Container(
     color: Colors.red,
     child: Align(
+      // ignore: sort_child_properties_last
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
+        children: const <Widget>[
           Icon(
             Icons.delete,
             color: Colors.white,
           ),
-          Text(
+           Text(
             " Delete",
             style: TextStyle(
               color: Colors.white,

@@ -6,6 +6,8 @@ import 'package:scretask/presentation/widgets/custom.button.dart';
 import 'package:scretask/presentation/widgets/custom.styles.dart';
 
 class DeciderScreen extends StatelessWidget {
+  const DeciderScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,25 +27,25 @@ class DeciderScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Center(
-                            child: Container(
+                            child: SizedBox(
                               width: MediaQuery.of(context).size.width * 0.8,
                               child: Lottie.asset(AppAssets.welcome),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
-                          Text(
+                          const Text(
                             "Task It Out",
                             style: kHeadline,
                             textAlign: TextAlign.center,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
-                          Container(
+                          SizedBox(
                             width: MediaQuery.of(context).size.width * 0.8,
-                            child: Text(
+                            child: const Text(
                               "Bring  your tasks,\nManage it from mobile \nand desktop and web.",
                               style: kBodyText,
                               textAlign: TextAlign.center,

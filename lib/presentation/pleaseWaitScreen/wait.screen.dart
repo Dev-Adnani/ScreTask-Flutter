@@ -14,7 +14,7 @@ class WaitingScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Lottie.asset(AppAssets.wait),
-            Text(
+            const Text(
               'Please Wait While We Load Your \n Data From Our Servers',
               textAlign: TextAlign.center,
               style: TextStyle(

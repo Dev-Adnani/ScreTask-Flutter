@@ -5,7 +5,7 @@ import 'package:scretask/app/constants/app.colors.dart';
 Widget homeBottomNav({required int index, required PageController controller}) {
   return Container(
     decoration: BoxDecoration(
-      borderRadius: BorderRadius.only(
+      borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(30),
         topRight: Radius.circular(30),
       ),
@@ -18,9 +18,9 @@ Widget homeBottomNav({required int index, required PageController controller}) {
       ],
     ),
     child: ClipRRect(
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(30),
-        topRight: Radius.circular(30),
+      borderRadius: const BorderRadius.only(
+        topLeft:  Radius.circular(30),
+        topRight:  Radius.circular(30),
       ),
       child: CustomNavigationBar(
         strokeColor: Colors.transparent,
@@ -34,13 +34,13 @@ Widget homeBottomNav({required int index, required PageController controller}) {
         unSelectedColor: Colors.grey.withOpacity(0.5),
         items: [
           CustomNavigationBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.home_rounded,
               size: 30,
             ),
           ),
           CustomNavigationBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.person_rounded,
               size: 30,
             ),

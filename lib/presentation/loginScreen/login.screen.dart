@@ -39,7 +39,7 @@ class LoginScreen extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios_new,
             size: 24,
             color: Colors.black,
@@ -62,18 +62,18 @@ class LoginScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Welcome back.",
                             style: kHeadline,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
-                          Text(
+                          const Text(
                             "You've been missed!",
                             style: kBodyText2,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 60,
                           ),
                           Form(
@@ -110,7 +110,7 @@ class LoginScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "Dont't have an account? ",
                           style: kBodyText,
                         ),
@@ -128,7 +128,7 @@ class LoginScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     CustomButton.customBtnLogin(

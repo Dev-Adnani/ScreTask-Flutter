@@ -31,7 +31,7 @@ class Core extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: Colors.white),
+      const SystemUiOverlayStyle(statusBarColor: Colors.white),
     );
 
     return MaterialApp(
@@ -43,7 +43,7 @@ class Core extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: AppRouter.generateRoute,
-      initialRoute: AppRouter.homeRoute,
+      initialRoute: AppRouter.splashRoute,
     );
   }
 }

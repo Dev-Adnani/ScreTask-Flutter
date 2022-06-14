@@ -12,7 +12,7 @@ AppBar homeAppBar({required BuildContext context}) {
     automaticallyImplyLeading: false,
     title: Row(
       children: [
-        Container(
+        SizedBox(
           height: 45,
           width: 45,
           child: ClipRRect(
@@ -22,12 +22,12 @@ AppBar homeAppBar({required BuildContext context}) {
                 : Image.asset(AppAssets.loading),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 10,
         ),
         Text(
-          'Hi, ${data.getName != null ? data.getName : ""}!',
-          style: TextStyle(
+          'Hi, ${data.getName ?? ""}!',
+          style: const TextStyle(
             fontSize: 26,
             color: Colors.black,
             fontWeight: FontWeight.bold,
@@ -37,7 +37,7 @@ AppBar homeAppBar({required BuildContext context}) {
     ),
     actions: [
       IconButton(
-        icon: Icon(
+        icon: const Icon(
           Icons.more_vert,
           color: Colors.black,
           size: 32,
@@ -52,8 +52,8 @@ AppBar homeAppBar({required BuildContext context}) {
                     onPressed: () {
                       showAlertDialog(context: context);
                     },
-                    icon: Icon(Icons.logout_sharp, color: Colors.black),
-                    label: Text(
+                    icon: const Icon(Icons.logout_sharp, color: Colors.black),
+                    label: const Text(
                       'Logout?',
                       style: TextStyle(color: Colors.black),
                     ),
