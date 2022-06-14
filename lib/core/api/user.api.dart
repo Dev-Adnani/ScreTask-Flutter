@@ -27,4 +27,20 @@ class UserDataAPI {
     final dynamic body = response.body;
     return body;
   }
+
+  Future taskCount({required String userId}) async {
+    var subUrl = '/task/count/$userId';
+    final Uri uri = Uri.parse(ApiRoutes.baseurl + subUrl);
+    final http.Response response = await client.get(
+      uri,
+      headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Access-Control-Allow-Origin': "*",
+    'Authorization': "test"
+  },
+    );
+    final dynamic body = response.body;
+    return body;
+  }
 }

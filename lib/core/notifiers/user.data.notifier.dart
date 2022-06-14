@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:scretask/app/routes/app.routes.dart';
 import 'package:scretask/core/api/user.api.dart';
@@ -16,12 +18,17 @@ class UserDataNotifier with ChangeNotifier {
   String? _id;
   String? get getID => _id;
 
-
   String? _photo;
   String? get getPhoto => _photo;
 
   bool _allowTouch = false;
   bool get getAllowTouch => _allowTouch;
+
+  int? total_tasks;
+  int? get getTotalTasks => total_tasks;
+
+  int? completed_tasks;
+  int? get getCompletedTasks => completed_tasks;
 
   Future<bool> decodeUserData({
     required BuildContext context,
@@ -48,7 +55,24 @@ class UserDataNotifier with ChangeNotifier {
       _photo = userData.photo;
       _allowTouch = true;
       notifyListeners();
+      taskCount();
       return true;
+    }
+  }
+
+  Future taskCount() async {
+    var countData = await _dataAPI.taskCount(userId: _id!);
+    final Map<String, dynamic> parseData = await jsonDecode(countData);
+    bool isReceived = parseData['received'];
+    bool isAvailable = parseData['available'];
+
+    if (isAvailable & isReceived) {
+      total_tasks = parseData['total_count'];
+      completed_tasks = parseData['completed_count'];
+      notifyListeners();
+    } else {
+      total_tasks = 0;
+      completed_tasks = 0;
     }
   }
 }
