@@ -4,6 +4,7 @@ import 'package:scretask/app/routes/app.routes.dart';
 import 'package:scretask/core/models/taskType.model.dart';
 import 'package:scretask/presentation/taskScreens/taskTypeScreen/task.type.screen.dart';
 import 'package:scretask/presentation/widgets/snackbar.widget.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class TaskType extends StatelessWidget {
   const TaskType({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class TaskType extends StatelessWidget {
       child: GridView.builder(
         itemCount: taskList.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
+          crossAxisCount: kIsWeb ? 4 : 2,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
         ),
@@ -48,7 +49,7 @@ class TaskType extends StatelessWidget {
         child: const Center(
           child: Text(
             '+ Add',
-            style:  TextStyle(
+            style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
