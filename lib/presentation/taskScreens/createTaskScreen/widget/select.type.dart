@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scretask/app/constants/app.colors.dart';
-import 'package:scretask/core/notifiers/type.notifier.dart';
+import 'package:scretask/core/notifiers/task.data.notifier.dart';
 import 'package:scretask/presentation/widgets/custom.styles.dart';
 
 Widget selectType({required BuildContext context}) {
-  TypeNotifier typenotifier(bool renderUI) =>
-      Provider.of<TypeNotifier>(context, listen: renderUI);
+  TaskDataNotifier typenotifier(bool renderUI) =>
+      Provider.of<TaskDataNotifier>(context, listen: renderUI);
   return ListView(
       scrollDirection: Axis.horizontal,
       padding: EdgeInsets.fromLTRB(10, 0, 20, 0),

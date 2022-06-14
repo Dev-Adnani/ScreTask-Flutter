@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scretask/app/constants/app.assets.dart';
 import 'package:scretask/app/constants/app.colors.dart';
+import 'package:scretask/app/routes/app.routes.dart';
 import 'package:scretask/core/models/task.model.dart';
 import 'package:scretask/core/notifiers/task.notiifer.dart';
+import 'package:scretask/presentation/taskScreens/editTaskScreen/edit.tasks.screen.dart';
 
 Widget taskTile({required snapshot, required BuildContext context}) {
   return ListView.builder(
@@ -14,8 +16,7 @@ Widget taskTile({required snapshot, required BuildContext context}) {
     itemBuilder: (context, index) {
       Task task = snapshot[index];
       return Dismissible(
-        background: slideRightBackground(),
-        secondaryBackground: slideLeftBackground(),
+        background: slideLeftBackground(),
         confirmDismiss: (direction) async {
           if (direction == DismissDirection.endToStart) {
             return await showDialog(
@@ -55,13 +56,23 @@ Widget taskTile({required snapshot, required BuildContext context}) {
                     ],
                   );
                 });
-          } else {}
+          }
           return null;
         },
         key: Key(task.taskId),
         child: GestureDetector(
           onTap: () {
-            print(task.taskId);
+            Navigator.of(context).pushNamed(
+              AppRouter.editTask,
+              arguments: EditTaskArgs(
+                task_id: task.taskId,
+                task_title: task.taskTitle,
+                task_desc: task.taskDesc,
+                task_type: task.taskType,
+                task_date: task.taskDate,
+                taskStatus: task.taskCompleted,
+              ),
+            );
           },
           child: Container(
             padding: EdgeInsets.all(12),
@@ -151,35 +162,6 @@ Widget taskTile({required snapshot, required BuildContext context}) {
         ),
       );
     },
-  );
-}
-
-Widget slideRightBackground() {
-  return Container(
-    color: Colors.green,
-    child: Align(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(
-            width: 20,
-          ),
-          Icon(
-            Icons.edit,
-            color: Colors.white,
-          ),
-          Text(
-            " Edit",
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w700,
-            ),
-            textAlign: TextAlign.left,
-          ),
-        ],
-      ),
-      alignment: Alignment.centerLeft,
-    ),
   );
 }
 

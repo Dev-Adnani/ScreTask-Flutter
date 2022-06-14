@@ -57,4 +57,28 @@ class TaskAPI {
     final dynamic body = response.body;
     return body;
   }
+
+  Future editTask({
+    required String task_id,
+    required String task_title,
+    required String task_desc,
+    required String task_type,
+    required String task_date,
+    required bool task_completed,
+  }) async {
+    const subUrl = '/task/update';
+    final Uri uri = Uri.parse(ApiRoutes.baseurl + subUrl);
+    final http.Response response = await client.put(uri,
+        headers: headers,
+        body: jsonEncode({
+          "task_id":task_id,
+          "task_title": task_title,
+          "task_desc": task_desc,
+          "task_type": task_type,
+          "task_date": task_date,
+          "task_completed": task_completed,
+        }));
+    final dynamic body = response.body;
+    return body;
+  }
 }

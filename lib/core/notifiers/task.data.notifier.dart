@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TypeNotifier with ChangeNotifier {
+class TaskDataNotifier with ChangeNotifier {
   String _type = 'Work';
 
   bool work = true;
@@ -33,8 +33,28 @@ class TypeNotifier with ChangeNotifier {
     notifyListeners();
   }
 
+  editable_work() {
+    work = true;
+    personal = false;
+    health = false;
+    _type = 'Work';
+  }
+
+  editable_personal() {
+    work = false;
+    personal = true;
+    health = false;
+    _type = 'Personal';
+  }
+
+  editable_health() {
+    work = false;
+    personal = false;
+    health = true;
+    _type = 'Health';
+  }
+
   DateTime datex = DateTime.now();
-  
 
   Future selectDate({required BuildContext context}) async {
     final selectedDate = await showDatePicker(

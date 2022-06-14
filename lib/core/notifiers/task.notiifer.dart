@@ -39,6 +39,7 @@ class TaskNotifier with ChangeNotifier {
     try {
       var data = await _taskAPI.deleteTask(taskId: taskId);
       final Map<String, dynamic> parseData = await jsonDecode(data);
+      print(data);
       bool isDeleted = parseData['deleted'];
       _task?.remove(taskId);
       notifyListeners();
@@ -71,8 +72,54 @@ class TaskNotifier with ChangeNotifier {
       final Map<String, dynamic> parseData = await jsonDecode(data);
       bool isAdded = parseData['added'];
       dynamic status = parseData['data'];
-      print(data);
       if (isAdded) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackUtil.stylishSnackBar(
+            text: status,
+            context: context,
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackUtil.stylishSnackBar(
+            text: "Some Error Occured",
+            context: context,
+          ),
+        );
+      }
+    } on SocketException catch (_) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackUtil.stylishSnackBar(
+            text: 'Oops No You Need A Good Internet Connection',
+            context: context),
+      );
+    }
+  }
+
+  Future editTask(
+      {required String task_title,
+      required String task_desc,
+      required String task_type,
+      required String task_date,
+      required String task_id,
+      required bool task_completed,
+      required BuildContext context}) async {
+    try {
+      var data = await _taskAPI.editTask(
+        task_title: task_title,
+        task_id: task_id,
+        task_desc: task_desc,
+        task_type: task_type,
+        task_date: task_date,
+        task_completed: task_completed,
+      );
+
+      final Map<String, dynamic> parseData = await jsonDecode(data);
+      bool isUpdated = parseData['updated'];
+      dynamic status = parseData['data'];
+      print(isUpdated);
+      print(status);
+      if (isUpdated) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackUtil.stylishSnackBar(
             text: status,
