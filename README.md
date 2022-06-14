@@ -1,16 +1,61 @@
-# scretask
+<p align="center">
+  <img src="https://github.com/Dev-Adnani/ScreTask-Flutter/blob/main/assets/images/logo.png" />
+</p>
 
-A new Flutter project.
 
-## Getting Started
+# ScreTask App
 
-This project is a starting point for a Flutter application.
+A Advance Task Management App With Biometric Auth And Powered By Custom Backend 
 
-A few resources to get you started if this is your first Flutter project:
+## Tech Stack
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+**Client:** Flutter
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[**Server:** Node, Express ,Typescript](https://github.com/Dev-Adnani/ScreTask-Backend)
+
+[**Database:** Postgres](https://github.com/Dev-Adnani/ScreTask-Backend)
+
+## Demo
+
+Youtube Video(App) : 
+Web :
+
+Note : This Is Not A Web Responsive Application
+
+## Features
+
+- Login / Sign Up
+- Fingerprint Auth
+- Email Verification
+- CRUD Operations On Tasks
+
+## Libraries
+
+- Main Library Used in App      
+    - Cloudinary Sdk
+    - Custom Navigation Bar
+    - Date Picker Timeline
+    - Dotted Border
+    - File Picker
+    - Flutter Switch
+    - Http
+    - Intl
+    - Local Auth
+    - Lottie
+    - Pie Chart
+    - Provider
+    - Shared Preferences
+    - Url Strategy
+
+## Screenshots
+
+- All Screens 
+
+Screen 1               |  Screen 2  | Screen 3                            |  Screen 4 |Screen 5 |Screen 6 |Screen 7
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|-------------------------:|-------------------------:|-------------------------:
+![](screenshots/email.png)|![](screenshots/login.png)|![](screenshots/home.png)|![](screenshots/profile.png)|![](screenshots/wlist.png) |![](screenshots/create.png)|![](screenshots/edit.png)
+
+## Feedback
+
+If you have any feedback, please reach out to us at dev.adnani26@gmail.com
+
